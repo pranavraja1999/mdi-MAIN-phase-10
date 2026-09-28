@@ -139,7 +139,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 // CONFIG
 // ═══════════════════════════════════════════════════════════════════════════
 const CONFIG = {
-  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyd-QGWpm4HqOrhvofmdCeeaJtSdjcMHbQY_xef4k1bQ_zf3gPVBYj3sZeappQOodBpEw/exec",
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyPk3seWTtatIJhCMj_SUz-lb_Y-G-TRdKp7Mt_7Wekxyf6hXK2Uu8A3-UipghrEdoXug/exec",
   MAX_PARTICIPANTS: 80,
 };
 
@@ -563,7 +563,8 @@ function checkEmailAndStart(email){
     }
   };
 
-  // Timeout fallback — if Apps Script doesn't respond in 6s, let them in
+  // Timeout fallback — Apps Script didn't respond in 6s.
+  // Try one more time with a dedicated lightweight assignment endpoint.
   const timer = setTimeout(()=>{
     if(!done){
       done = true;
@@ -571,9 +572,10 @@ function checkEmailAndStart(email){
       delete window[cbName];
       const s = document.getElementById("jsonp-email-check");
       if(s) s.remove();
-      console.warn("Email check timed out — falling back to local random assignment");
+      console.warn("Email check timed out — fetching assignment directly");
       state.email = email;
-      startSurvey();
+      // Try to get a server-assigned condition before falling back to random
+      fetchAssignment(email);
     }
   }, 6000);
 
@@ -587,6 +589,33 @@ function checkEmailAndStart(email){
     clearTimeout(timer);
     if(!done){ done=true; showLoading(false); delete window[cbName]; state.email=email; startSurvey(); }
   };
+  document.head.appendChild(script);
+}
+
+// Fetches a server-assigned condition via JSONP — used as a fallback when the
+// full email check times out. Retries once, then falls back to local random.
+function fetchAssignment(email){
+  if(!CONFIG.SCRIPT_URL){ startSurvey(); return; }
+  showLoading(true);
+  const cbName="_asgCb_"+Date.now();
+  let done=false;
+  window[cbName]=function(res){
+    done=true; showLoading(false); delete window[cbName];
+    const s=document.getElementById("jsonp-assign"); if(s)s.remove();
+    startSurvey(res.condition, res.num);
+  };
+  setTimeout(()=>{
+    if(!done){
+      done=true; showLoading(false); delete window[cbName];
+      const s=document.getElementById("jsonp-assign"); if(s)s.remove();
+      console.warn("Assignment fetch also timed out — using local random as last resort");
+      startSurvey();
+    }
+  }, 5000);
+  const script=document.createElement("script");
+  script.id="jsonp-assign";
+  script.src=CONFIG.SCRIPT_URL+"?action=getAssignment&callback="+cbName;
+  script.onerror=()=>{ if(!done){done=true;showLoading(false);delete window[cbName];startSurvey();} };
   document.head.appendChild(script);
 }
 
@@ -1917,7 +1946,6 @@ function startStudy(){
   const fullName = nameEl ? nameEl.value.trim() : "";
   const email    = emailEl ? emailEl.value.trim() : "";
 
-  // Name is required
   if(!fullName || fullName.length < 2){
     if(nameErr) nameErr.style.display = "block";
     if(nameEl) nameEl.focus();
@@ -1925,13 +1953,36 @@ function startStudy(){
   }
   if(nameErr) nameErr.style.display = "none";
 
-  // Basic email validation
   if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
     if(errEl) errEl.style.display = "block";
     if(emailEl) emailEl.focus();
     return;
   }
   if(errEl) errEl.style.display = "none";
+
+  // Client-side session lock — prevents re-entry within the same browser tab
+  try{
+    const locked = sessionStorage.getItem("mdi_p9_email");
+    if(locked && locked.toLowerCase()===email.toLowerCase()){
+      state.email    = email;
+      state.fullName = fullName;
+      state.pid      = sessionStorage.getItem("mdi_p9_pid") || uid();
+      state.resumeSection = "block1";
+      document.getElementById("app").innerHTML=`
+        <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><div class="progress-label">0% complete</div></div>
+        <div class="shell" id="sections-wrap"></div>`;
+      document.getElementById("sections-wrap").innerHTML=`
+        <div class="card" style="text-align:center;padding:40px 32px">
+          <h2 style="font-family:var(--font-h);color:var(--navy);margin-bottom:12px">Session Already Active</h2>
+          <p style="color:var(--slate);font-size:14px;line-height:1.8;margin-bottom:24px">
+            A session is already in progress for <strong>${email}</strong> in this browser.<br>
+            Please continue your current session.
+          </p>
+          <button class="btn btn-primary" onclick="goSection(state.resumeSection||'block1')">Continue →</button>
+        </div>`;
+      return;
+    }
+  }catch(e){}
 
   state.fullName = fullName;
   checkEmailAndStart(email);
@@ -1944,10 +1995,14 @@ function startSurvey(assignedCondition, assignedConditionNum){
     state.condition    = assignedCondition;
     state.conditionNum = Number(assignedConditionNum) || (arms.indexOf(assignedCondition)+1);
   } else {
-    // Fallback only — used if the server is unreachable
     randomCondition();
   }
   randomLotteryOrder();
+  // Lock this session in sessionStorage to prevent re-entry in the same tab
+  try{
+    sessionStorage.setItem("mdi_p9_email", state.email||"");
+    sessionStorage.setItem("mdi_p9_pid",   state.pid);
+  }catch(e){}
   console.log("Assigned:",state.condition,"| Lotteries:",state.lotteryOrder,"| PID:",state.pid,"| Email:",state.email);
   document.getElementById("app").innerHTML=`
     <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><div class="progress-label">0% complete</div></div>
