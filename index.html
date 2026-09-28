@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MDI Gurgaon — Investment Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2A4A;--navy2:#243656;--amber:#D4891A;--amber-lt:#FDF3DC;
+  --white:#FFFFFF;--off:#F7F8FA;--slate:#64748B;--light:#E2E8F0;
+  --dark:#1E293B;--red:#C0392B;--green:#1A7A44;--mid:#94A3B8;
+  --radius:10px;--shadow:0 4px 24px rgba(27,42,74,0.10);
+  --font-h:'Libre Baskerville',Georgia,serif;--font-b:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--off);color:var(--dark);min-height:100vh;font-size:15px;line-height:1.6}
+.progress-wrap{position:sticky;top:0;z-index:100;background:var(--navy);padding:10px 20px;display:flex;align-items:center;gap:14px}
+.progress-bar{flex:1;height:4px;background:rgba(255,255,255,0.2);border-radius:2px}
+.progress-fill{height:100%;background:var(--amber);border-radius:2px;transition:width 0.5s ease}
+.progress-label{font-size:12px;color:rgba(255,255,255,0.7);white-space:nowrap}
+.shell{max-width:720px;margin:0 auto;padding:0 16px 60px}
+.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin-top:24px;border:1px solid var(--light)}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--amber)}
+.block-badge{background:var(--navy);color:var(--white);font-size:10px;font-weight:600;letter-spacing:0.08em;padding:4px 10px;border-radius:20px;white-space:nowrap;text-transform:uppercase}
+.card-title{font-family:var(--font-h);font-size:17px;color:var(--navy)}
+.honesty{background:var(--off);border-left:3px solid var(--mid);border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:18px;font-size:12.5px;color:var(--slate);font-style:italic}
+.sec-label{font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--amber);margin:20px 0 8px}
+.q-block{margin-bottom:20px}
+.q-label{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:8px;line-height:1.55}
+.q-num{display:inline-block;background:var(--amber);color:var(--white);font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;margin-right:8px;vertical-align:middle}
+.q-note{font-size:12px;color:var(--slate);font-style:italic;margin-top:4px}
+input[type=text],input[type=number],select,textarea{width:100%;padding:10px 14px;border:1.5px solid var(--light);border-radius:8px;font-family:var(--font-b);font-size:14px;color:var(--dark);background:var(--white);transition:border-color 0.2s;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(212,137,26,0.15)}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+.options{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;border-radius:8px;border:1.5px solid var(--light);cursor:pointer;transition:all 0.15s;font-size:14px;background:var(--white)}
+.opt:hover{border-color:var(--amber);background:var(--amber-lt)}
+.opt.selected{border-color:var(--amber);background:var(--amber-lt)}
+.opt input{margin-top:2px;flex-shrink:0;accent-color:var(--amber)}
+.matrix-wrap{overflow-x:auto;margin-top:8px}
+.matrix{width:100%;border-collapse:collapse;font-size:13px}
+.matrix th{background:var(--navy);color:var(--white);padding:8px 6px;text-align:center;font-weight:600;font-size:11.5px;border:1px solid var(--navy2)}
+.matrix th.stmt-col{text-align:left;width:50%}
+.matrix td{padding:9px 6px;border:1px solid var(--light);text-align:center;vertical-align:middle}
+.matrix td.stmt{text-align:left;padding-left:10px;font-size:13px;line-height:1.4}
+.matrix tr:nth-child(even) td{background:var(--off)}
+.matrix input[type=radio]{accent-color:var(--amber);width:16px;height:16px;cursor:pointer}
+.task-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.task-table th{background:var(--navy);color:var(--white);padding:9px 10px;font-size:12px;font-weight:600;border:1px solid var(--navy2)}
+.task-table td{padding:9px 10px;border:1px solid var(--light);vertical-align:middle;text-align:center}
+.task-table tr:nth-child(even) td{background:var(--off)}
+.task-table td.row-lbl{font-weight:600;color:var(--navy);width:50px}
+.task-table td input[type=radio]{accent-color:var(--amber);width:16px;height:16px;cursor:pointer}
+.task-table td input[type=radio]:disabled{opacity:0.35;cursor:not-allowed}
+.alloc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.alloc-item{background:var(--off);border:1.5px solid var(--light);border-radius:8px;padding:11px 14px}
+.alloc-asset-name{font-weight:600;font-size:13.5px;color:var(--navy);margin-bottom:2px}
+.alloc-asset-sub{font-size:11.5px;color:var(--slate);margin-bottom:7px}
+.alloc-total{margin-top:10px;padding:11px 16px;border-radius:8px;background:var(--off);border:1.5px solid var(--light);display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:500}
+.alloc-total-val{font-size:16px;font-weight:700}
+.alloc-ok{color:var(--green)}.alloc-err{color:var(--red)}
+.info-box{background:var(--off);border-left:4px solid var(--navy);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:13.5px;color:var(--dark);line-height:1.6}
+.warn-box{background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0;font-size:13.5px;color:var(--dark);line-height:1.6}
+.error-box{background:#fdf0ef;border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:11px 16px;margin:10px 0;font-size:13.5px;color:var(--red);font-weight:500;display:none}
+.inst-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+.inst-table th{background:var(--navy);color:var(--white);padding:8px 10px;font-size:12px;border:1px solid var(--navy2)}
+.inst-table td{padding:8px 10px;border:1px solid var(--light);vertical-align:middle}
+.inst-table tr:nth-child(even) td{background:var(--off)}
+.peer-card{background:var(--off);border:1.5px solid var(--light);border-radius:10px;padding:13px 18px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.peer-avatar{width:42px;height:42px;border-radius:50%;background:var(--navy);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.peer-info .peer-name{font-weight:600;color:var(--navy);font-size:13.5px}
+.peer-info .peer-sub{color:var(--slate);font-size:12px}
+.treatment-box{border-radius:10px;padding:15px 18px;margin-bottom:12px;border:1.5px solid var(--light)}
+.treatment-box.luck{background:#FFF9E6;border-color:#E8A020}
+.treatment-box.skill{background:#EBF5FF;border-color:#2E75B6}
+.pi-ico{display:inline-flex;align-items:center;justify-content:center;color:var(--navy);flex-shrink:0}
+.attr-hero{display:flex;gap:20px;align-items:center;border-radius:14px;padding:22px 26px;margin-bottom:14px;box-shadow:0 4px 14px rgba(0,0,0,0.05)}
+.attr-hero.luck{background:linear-gradient(135deg,#FEF6E3 0%,#FBE9C8 100%);border:2px solid #F0C674}
+.attr-hero.skill{background:linear-gradient(135deg,#E9F6EE 0%,#D5EDDF 100%);border:2px solid #9BD3AF}
+.attr-hero-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:88px}
+.attr-hero-body{flex:1}
+.attr-hero-title{font-family:var(--font-h);font-size:24px;font-weight:700;line-height:1.15;margin-bottom:10px}
+.attr-hero.luck .attr-hero-title{color:#C97A10}
+.attr-hero.skill .attr-hero-title{color:#157A3C}
+.attr-hero-text{font-size:15.5px;line-height:1.65;color:var(--dark);margin:0}
+.attr-hero.luck .attr-hero-text strong{color:#B36F0C;font-weight:700}
+.attr-hero.skill .attr-hero-text strong{color:#12703A;font-weight:700}
+@media(max-width:560px){
+  .attr-hero{flex-direction:column;text-align:center;gap:12px;padding:20px 18px}
+  .attr-hero-icon{width:auto}
+  .attr-hero-title{font-size:21px}
+}
+.gap-note{background:rgba(212,137,26,0.12);border-radius:6px;padding:9px 13px;margin-top:9px;font-size:13.5px;font-weight:500;color:var(--dark)}
+.timer-bar-wrap{background:var(--light);border-radius:6px;height:8px;margin-bottom:14px;overflow:hidden}
+.timer-bar-fill{height:100%;background:var(--green);border-radius:6px;transition:width 1s linear}
+.timer-label{font-size:12px;color:var(--slate);margin-bottom:6px;text-align:right}
+.return-card{border:1.5px solid var(--light);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.return-card-header{background:var(--navy);color:var(--white);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
+.return-pay-badge{background:var(--amber);color:var(--navy);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.return-body{padding:12px 16px}
+.return-assets{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:10px}
+.return-asset{background:var(--off);border-radius:6px;padding:7px 5px;text-align:center;border:1px solid var(--light)}
+.return-asset-name{font-size:11px;font-weight:600;color:var(--navy)}
+.return-asset-alloc{font-size:11.5px;color:var(--slate)}
+.return-asset-ret{font-size:12.5px;font-weight:700}
+.ret-pos{color:var(--green)}.ret-neg{color:var(--red)}.ret-zero{color:var(--slate)}
+.return-summary{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;border-radius:8px;background:var(--off);border:1.5px solid var(--light);font-size:14px;margin-top:6px}
+.return-total{font-size:18px;font-weight:700;font-family:var(--font-h)}
+.cover{min-height:100vh;background:linear-gradient(rgba(27,42,74,0.75), rgba(27,42,74,0.85)),url('bg.jpg') center/cover no-repeat;;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;position:relative;}
+.cover-logo{font-family:var(--font-h);font-size:12px;color:var(--amber);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:36px}
+.cover-title{font-family:var(--font-h);font-size:clamp(20px,3.5vw,30px);color:var(--white);line-height:1.3;margin-bottom:10px;max-width:520px}
+.cover-sub{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:32px;max-width:440px;line-height:1.6}
+.cover-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:420px;width:100%;margin-bottom:32px}
+.meta-item{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:11px 15px;text-align:left}
+.meta-label{font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:2px}
+.meta-value{font-size:13px;color:var(--white)}
+.btn{padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid;transition:all 0.2s;font-family:var(--font-b)}
+.btn-primary{border-color:var(--amber);background:var(--amber);color:var(--white)}
+.btn-primary:hover{background:#b8750f;border-color:#b8750f}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed}
+.loading{position:fixed;inset:0;background:rgba(27,42,74,0.7);display:none;align-items:center;justify-content:center;z-index:9999}
+.loading-inner{background:var(--white);border-radius:12px;padding:28px 36px;text-align:center}
+.spinner{width:36px;height:36px;border:3px solid var(--light);border-top-color:var(--amber);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.end-screen{min-height:80vh;display:flex;align-items:center;justify-content:center}
+.end-inner{text-align:center;padding:40px 32px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);max-width:480px}
+@media(max-width:600px){.card{padding:18px 16px}.alloc-grid{grid-template-columns:1fr}.cover-meta{grid-template-columns:1fr}.return-assets{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="loading" id="loading"><div class="loading-inner"><div class="spinner"></div><div style="font-size:14px;color:var(--slate)">Saving…</div></div></div>
+<div id="app"></div>
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════════════════════════════════
+const CONFIG = {
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzfGXHXciEUEnJ7h4bYUuEeuoP1W3PmGDRjq-W5cV6ZwFmYq6Se905J8kcwH_u26xDg/exec",
+  MAX_PARTICIPANTS: 80,
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ASSET PARAMETERS
+// ═══════════════════════════════════════════════════════════════════════════
+// Base ASSETS used in Block 3 instructions (Round 1 parameters)
+const ASSETS = {
+  cash:{ label:"Cash",    mean:0,  sd:0,  ret:"0%",   range:"Always 0%",  desc:"Guaranteed 0% return" },
+  L:   { label:"Asset L", mean:4,  sd:6,  ret:"+4%",  range:"-2% to +10%",  desc:"Govt. bonds / debt funds" },
+  M:   { label:"Asset M", mean:8,  sd:15, ret:"+8%",  range:"-7% to +23%",  desc:"Large-cap equity index" },
+  H:   { label:"Asset H", mean:13, sd:25, ret:"+13%", range:"-12% to +38%", desc:"Small-cap equity" },
+  V:   { label:"Asset V", mean:20, sd:40, ret:"+20%", range:"-20% to +60%", desc:"Derivatives / speculative" },
+};
+
+// Round 1 — Base parameters
+const ASSETS_R1 = {
+  cash:{ label:"Cash",    mean:0,  sd:0,  ret:"0%",   range:"Always 0%",    desc:"Guaranteed 0% return" },
+  L:   { label:"Asset L", mean:4,  sd:6,  ret:"+4%",  range:"-2% to +10%",  desc:"Govt. bonds / debt funds" },
+  M:   { label:"Asset M", mean:8,  sd:15, ret:"+8%",  range:"-7% to +23%",  desc:"Large-cap equity index" },
+  H:   { label:"Asset H", mean:13, sd:25, ret:"+13%", range:"-12% to +38%", desc:"Small-cap equity" },
+  V:   { label:"Asset V", mean:20, sd:40, ret:"+20%", range:"-20% to +60%", desc:"Derivatives / speculative" },
+};
+
+// Round 2 — Shifted upward slightly
+const ASSETS_R2 = {
+  cash:{ label:"Cash",    mean:0,  sd:0,  ret:"0%",   range:"Always 0%",    desc:"Guaranteed 0% return" },
+  L:   { label:"Asset L", mean:5,  sd:7,  ret:"+5%",  range:"-2% to +12%",  desc:"Govt. bonds / debt funds" },
+  M:   { label:"Asset M", mean:10, sd:14, ret:"+10%", range:"-4% to +24%",  desc:"Large-cap equity index" },
+  H:   { label:"Asset H", mean:15, sd:23, ret:"+15%", range:"-8% to +38%",  desc:"Small-cap equity" },
+  V:   { label:"Asset V", mean:22, sd:38, ret:"+22%", range:"-16% to +60%", desc:"Derivatives / speculative" },
+};
+
+// Round 3 — Shifted downward slightly
+const ASSETS_R3 = {
+  cash:{ label:"Cash",    mean:0,  sd:0,  ret:"0%",   range:"Always 0%",    desc:"Guaranteed 0% return" },
+  L:   { label:"Asset L", mean:3,  sd:5,  ret:"+3%",  range:"-2% to +8%",   desc:"Govt. bonds / debt funds" },
+  M:   { label:"Asset M", mean:7,  sd:13, ret:"+7%",  range:"-6% to +20%",  desc:"Large-cap equity index" },
+  H:   { label:"Asset H", mean:12, sd:22, ret:"+12%", range:"-10% to +34%", desc:"Small-cap equity" },
+  V:   { label:"Asset V", mean:18, sd:35, ret:"+18%", range:"-17% to +53%", desc:"Derivatives / speculative" },
+};
+const ENDOWMENT   = 40000;
+const EU_TO_INR   = 0.007;   // 100 EU = ₹0.70  (investment payout only)
+const PEER_EARNINGS_EU = 56000; // peer earned around 56,000 EU (40% return on 40,000 EU endowment)
+
+// Fixed peer IDs per treatment arm — formatted to match participant IDs so the
+// peer appears to be drawn from the same participant pool.
+const PEER_IDS = {
+  Luck:        "P_1782648301744_K3M9T",
+  Skill:       "P_1782651887203_R7WQ2",
+  LuckReflect: "P_1782659412056_B4XN8",
+};
+function peerId(){ return PEER_IDS[state.condition] || PEER_IDS.Luck; }
+
+// Human silhouette avatar (inline SVG) — replaces the "P42" text avatar
+const PEER_AVATAR_SVG = `<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"/></svg>`;
+
+// Small info-row icons for the peer detail box
+const ICON_IDCARD = `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8.5" cy="10" r="2"/><path d="M5 16c0-1.7 1.6-3 3.5-3s3.5 1.3 3.5 3"/><line x1="15" y1="9" x2="19" y2="9"/><line x1="15" y1="13" x2="19" y2="13"/></svg>`;
+const ICON_LINK = `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>`;
+const ICON_COINS = `<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>`;
+
+// Attribution hero icons — a trophy for the "luck" framing (a windfall reward)
+// and a target/precision mark for the "skill" framing (deliberate strategy).
+const ATTR_ICON_LUCK = `<svg viewBox="0 0 64 64" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#D4891A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 10h24v10a12 12 0 0 1-24 0V10z" fill="#F6C651"/>
+    <path d="M20 14h-6a6 6 0 0 0 6 10" fill="#FDF3DC"/>
+    <path d="M44 14h6a6 6 0 0 1-6 10" fill="#FDF3DC"/>
+    <path d="M32 32v8" />
+    <path d="M24 40h16l2 8H22l2-8z" fill="#F6C651"/>
+    <path d="M20 52h24" />
+  </g>
+  <path d="M32 15l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L32 15z" fill="#E8941C"/>
+  <g stroke="#F6C651" stroke-width="2" stroke-linecap="round">
+    <path d="M12 8l-2-3M8 14l-3.5-1M54 8l2-3M56 14l3.5-1"/>
+  </g>
+</svg>`;
+const ATTR_ICON_SKILL = `<svg viewBox="0 0 64 64" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#1B7A44" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="20" fill="#E4F3E9"/>
+    <circle cx="32" cy="32" r="13" fill="#FFFFFF"/>
+    <circle cx="32" cy="32" r="6" fill="#C7E6D2"/>
+    <circle cx="32" cy="32" r="1.6" fill="#1B7A44" stroke="none"/>
+  </g>
+  <path d="M32 6v6M32 52v6M6 32h6M52 32h6" stroke="#1B7A44" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M46 18l6-6M52 12l-1.5 5 5-1.5" stroke="#1B7A44" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>`;
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════════════
+const state = {
+  section:        "cover",
+  condition:      null,
+  fullName:       "",
+  acOrder:        null,
+  acRevealed:     false,
+  conditionNum:   null,
+  lotteryOrder:   null,   // "HL_first" or "LA_first"
+  payRound:       null,
+  pid:            null,
+  email:          null,
+  resumeSection:  null,
+  compAttempts:   0,
+  compQuestion:   1,
+  allocs:         {R1:{cash:0,L:0,M:0,H:0,V:0},R2:{cash:0,L:0,M:0,H:0,V:0},R3:{cash:0,L:0,M:0,H:0,V:0}},
+  returns:        [],
+  answers:        {},
+  hlSwitched:     false,
+  laSwitched:     false,
+  fl2RandomOrder: null,
+  hlResult:       null,
+  laResult:       null,
+  hlPayRow:       null,
+  laPayRow:       null,
+  // New elicitation screens (after Block 9b, before Block 11)
+  chanceUp:       null,   // Screen A slider value (0–100)
+  chanceDown:     null,   // Screen B slider value (0–100)
+  tktA:           {},     // Screen C choices {5,10,20,40,60,80} → 1/0
+  tktB:           {},     // Screen D choices {5,10,20,40,60,80} → 1/0
+  tktResult:      null,   // computed at reveal
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+function uid(){ return "P_"+Date.now()+"_"+Math.random().toString(36).slice(2,7).toUpperCase(); }
+
+function randNormal(mean,sd){
+  if(sd===0) return mean;
+  let draw,n=0;
+  do{
+    let u1=0,u2=0;
+    while(u1===0) u1=Math.random();
+    while(u2===0) u2=Math.random();
+    draw = mean + sd*Math.sqrt(-2*Math.log(u1))*Math.cos(2*Math.PI*u2);
+    n++;
+  } while((draw<mean-sd||draw>mean+sd)&&n<20);
+  return Math.max(mean-sd,Math.min(mean+sd,draw));
+}
+
+function calcReturn(alloc, assets){
+  assets = assets || ASSETS;
+  const total = Object.values(alloc).reduce((a,b)=>a+b,0)||ENDOWMENT;
+  let portfolio=0;
+  const breakdown={};
+  for(const[k,a] of Object.entries(assets)){
+    const w=(alloc[k]||0)/total;
+    const draw=randNormal(a.mean,a.sd);
+    breakdown[k]={w,draw,amt:alloc[k]||0};
+    portfolio+=w*draw;
+  }
+  return{portfolio:parseFloat(portfolio.toFixed(1)),breakdown};
+}
+
+function fmt(n){return(n>=0?"+":"")+n.toFixed(1)+"%"}
+function fmtINR(n){return "₹"+Math.round(n).toLocaleString("en-IN")}
+function fmtEU(n){return n.toLocaleString("en-IN")+" EU"}
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function getChecked(name){
+  const el=document.querySelector(`input[name="${name}"]:checked`);
+  return el?el.value:null;
+}
+
+function selectOpt(el,name){
+  document.querySelectorAll(`input[name="${name}"]`).forEach(i=>i.closest(".opt")?.classList.remove("selected"));
+  el.classList.add("selected");
+  const inp=el.querySelector("input");
+  inp.checked=true;
+  inp.dispatchEvent(new Event("change",{bubbles:true}));
+}
+
+function allocTotal(alloc){return Object.values(alloc).reduce((a,b)=>a+b,0);}
+// ── Return Explorer ────────────────────────────────────────────────────────
+function updateExpTotal(){
+  const keys=["cash","L","M","H","V"];
+  let total=0;
+  keys.forEach(k=>{const el=document.getElementById("exp_"+k);total+=el?(parseFloat(el.value)||0):0;});
+  const el=document.getElementById("exp-total");
+  if(!el) return;
+  const ok=total===40000;
+  el.innerHTML=`Total: <span class="alloc-total-val ${ok?"alloc-ok":"alloc-err"}">${total.toLocaleString("en-IN")} / 40,000</span> ${ok?"✓":""}`;
+}
+
+function runExplorer(){
+  const keys=["cash","L","M","H","V"];
+  const alloc={};
+  let total=0;
+  keys.forEach(k=>{const v=parseFloat(document.getElementById("exp_"+k)?.value)||0;alloc[k]=v;total+=v;});
+  if(total!==40000){document.getElementById("exp-error").style.display="block";return;}
+  document.getElementById("exp-error").style.display="none";
+  const{portfolio,breakdown}=calcReturn(alloc);
+  const portR=parseFloat(portfolio.toFixed(1));
+  const retClass=portR>0?"ret-pos":portR<0?"ret-neg":"ret-zero";
+  const endEU=Math.round(40000*(1+portR/100));
+  const rows=Object.entries(ASSETS).map(([k,a])=>{
+    const amt=alloc[k]||0;if(!amt) return "";
+    const draw=parseFloat((breakdown[k]?.draw??0).toFixed(1));
+    const eu=Math.round(amt*(1+draw/100));
+    const cls=draw>0?"ret-pos":draw<0?"ret-neg":"ret-zero";
+    return `<tr><td><strong>${a.label}</strong></td><td style="text-align:right">${amt.toLocaleString("en-IN")}</td><td style="text-align:center">${a.range}</td><td style="text-align:center" class="${cls}">${fmt(draw)}</td><td style="text-align:right">${eu.toLocaleString("en-IN")}</td></tr>`;
+  }).filter(Boolean).join("");
+  document.getElementById("exp-result").innerHTML=`
+    <div style="background:var(--off);border-radius:10px;padding:14px 16px;border:1.5px solid var(--light)">
+      <div class="sec-label" style="margin:0 0 10px">Simulated Result</div>
+      <table class="inst-table" style="margin:0 0 12px">
+        <thead><tr><th>Asset</th><th>Allocated</th><th>Return Range</th><th>Your Return</th><th>Final Amount</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div style="font-size:15px;font-weight:600">
+        Portfolio Return: <span class="${retClass}">${fmt(portR)}</span>
+        &nbsp;|&nbsp; Ending: <strong>${endEU.toLocaleString("en-IN")} units</strong>
+      </div>
+      <div style="font-size:12px;color:var(--slate);margin-top:6px">${portR<0?"Note: risky assets can produce losses — this is expected behaviour.":"Note: returns vary each run due to random draws."}</div>
+    </div>`;
+  document.getElementById("exp-result").style.display="block";
+  document.getElementById("exp-reset-btn").style.display="inline-block";
+}
+
+function resetExplorer(){
+  ["cash","L","M","H","V"].forEach(k=>{const el=document.getElementById("exp_"+k);if(el)el.value="";});
+  document.getElementById("exp-result").style.display="none";
+  document.getElementById("exp-reset-btn").style.display="none";
+  updateExpTotal();
+}
+function updateAllocTotal(round){
+  const keys=["cash","L","M","H","V"];
+  let total=0;
+  keys.forEach(k=>{const el=document.getElementById(`${round}_${k}`);total+=el?(parseFloat(el.value)||0):0;});
+  const el=document.getElementById(`total_${round}`);
+  if(!el) return;
+  const ok=total===ENDOWMENT;
+  el.innerHTML=`Total: <span class="alloc-total-val ${ok?"alloc-ok":"alloc-err"}">${fmtEU(total)}</span> ${ok?"✓":"— must equal "+fmtEU(ENDOWMENT)}`;
+}
+
+function progress(pct){
+  const f=document.querySelector(".progress-fill");
+  const l=document.querySelector(".progress-label");
+  if(f) f.style.width=pct+"%";
+  if(l) l.textContent=Math.round(pct)+"% complete";
+}
+
+function goSection(sec){
+  state.section=sec;
+  const wrap=document.getElementById("sections-wrap");
+  const postRender={
+    block3b: ()=>{ showCompQ(1); }
+  };
+  const fns={
+    cover:renderCover, participantInfo:renderParticipantInfo, consent:renderConsent,
+    block1:renderBlock1, block2:renderBlock2,
+    block3:renderBlock3, block3b:renderBlock3b, block4:renderBlock4,
+    block4r:renderBlock4Recall,
+    prelottery:renderPreLottery,
+    preInvestment:renderPreInvestment,
+    lottery_a:renderLotteryA, lottery_b:renderLotteryB,
+    block6:()=>renderRound(1), block7:()=>renderRound(2), block8:()=>renderRound(3),
+    block8s:renderSelfAssess,
+    block9:renderBlock9,
+    block9b:renderBlock9b,
+    screenA:renderScreenA,
+    screenB:renderScreenB,
+    screenC:renderScreenC,
+    screenD:renderScreenD,
+    block11:renderBlock11,
+  };
+  if(!fns[sec]){
+    console.warn("Unknown section '"+sec+"' — falling back to block1");
+    sec = "block1";
+    state.section = sec;
+  }
+  wrap.innerHTML=fns[sec]();
+  if(postRender[sec]) postRender[sec]();
+  attachHandlers(sec);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+// nav row — NO back button
+function navRow(nextFn,nextLabel="Continue →"){
+  return `<div style="margin-top:24px;padding-top:16px;border-top:1.5px solid var(--light);display:flex;justify-content:flex-end">
+    <button class="btn btn-primary" onclick="${nextFn}">${nextLabel}</button>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DATA SAVING
+// ═══════════════════════════════════════════════════════════════════════════
+function saveData(payload){
+  if(!CONFIG.SCRIPT_URL) return;
+  const json = JSON.stringify(payload);
+
+  // Primary: fetch POST with no-cors (fire-and-forget, works with Apps Script)
+  fetch(CONFIG.SCRIPT_URL, {
+    method: "POST",
+    mode:   "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body:   "data=" + encodeURIComponent(json),
+  }).catch(e => console.warn("POST failed, trying GET:", e));
+
+  // GET fallback removed — prevents duplicate rows in the sheet
+
+  console.log("Saving:", payload.block, "| PID:", payload.pid, "| Email:", payload.email);
+}
+
+function saveBlock(block, data){
+  saveData({
+    pid:          state.pid          || "",
+    email:        state.email        || "",
+    timestamp:    new Date().toISOString(),
+    condition:    state.condition    || "",
+    conditionNum: state.conditionNum || "",
+    lotteryOrder: state.lotteryOrder || "",
+    payRound:     state.payRound     || "",
+    block,
+    section:      state.section      || "",   // section key for resume
+    ...data
+  });
+}
+
+// ── RESUME SECTION NORMALISATION ──────────────────────────────────────────
+// Newer rows store the section key directly (e.g. "block2"). Older rows stored
+// the data-block label (e.g. "B1_Demographics"), which is not a valid section
+// key — resuming on one of those produced a blank screen. Map the legacy
+// labels to the section the participant should land on next.
+const LEGACY_SECTION_MAP = {
+  "B1_Demographics":  "block2",
+  "B2_FinLit":        "block3",
+  "B4_Treatment":     "block4r",
+  "B4_AttentionCheck":"prelottery",
+  "B5_HoltLaury":     "lottery_b",
+  "B5b_LossAversion": "lottery_b",
+  "B_Round1":         "block7",
+  "B_Round2":         "block8",
+  "B_Round3":         "block8s",
+  "B_SelfAssess":     "block9",
+  "B9_Belief":        "block9b",
+  "B9b_RankBelief":   "screenA",
+  "B9_ScreenA":       "screenB",
+  "B9_ScreenB":       "screenC",
+  "B9_ScreenC":       "screenD",
+  "B9_ScreenD":       "block11",
+  "B11_Returns":      "block11",
+  "SURVEY_END":       "block1",
+};
+
+// Sections a participant may legitimately be resumed into.
+const RESUMABLE_SECTIONS = [
+  "block1","block2","block3","block3b","block4","block4r","prelottery",
+  "lottery_a","lottery_b","preInvestment","block6","block7","block8",
+  "block8s","block9","block9b","screenA","screenB","screenC","screenD","block11"
+];
+
+function normalizeSection(sec){
+  if(!sec) return "block1";
+  if(LEGACY_SECTION_MAP[sec]) return LEGACY_SECTION_MAP[sec];
+  // Never resume onto the landing/consent screens — those are pre-assignment
+  if(sec === "cover" || sec === "participantInfo" || sec === "consent") return "block1";
+  // Anything unrecognised restarts from the first post-consent block
+  if(RESUMABLE_SECTIONS.indexOf(sec) === -1){
+    console.warn("Unrecognised resume section '"+sec+"' — starting from block1");
+    return "block1";
+  }
+  return sec;
+}
+
+// ── EMAIL CHECK — JSONP via dynamic script tag ────────────────────────────
+// Apps Script does not send CORS headers so fetch() cannot read the response.
+// A dynamic <script> tag sidesteps CORS entirely and delivers the callback.
+function checkEmailAndStart(email){
+  if(!CONFIG.SCRIPT_URL){ state.email=email; startSurvey(); return; }
+  showLoading(true);
+
+  const cbName = "_emailCb_" + Date.now();
+  let done = false;
+
+  window[cbName] = function(res){
+    done = true;
+    showLoading(false);
+    delete window[cbName];
+    const s = document.getElementById("jsonp-email-check");
+    if(s) s.remove();
+
+    if(res.status === "complete"){
+      document.getElementById("app").innerHTML=`
+        <div class="cover" style="justify-content:center">
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:36px 32px;max-width:440px;text-align:center">
+            <h2 style="font-family:var(--font-h);color:var(--white);margin-bottom:14px">Already Submitted</h2>
+            <p style="color:rgba(255,255,255,0.75);font-size:14px;line-height:1.8">
+              Our records show that <strong style="color:var(--amber)">${email}</strong> has already completed this survey.<br><br>
+              Each participant may submit only once. If you believe this is an error, please contact the research team.
+            </p>
+            <p style="margin-top:20px;color:rgba(255,255,255,0.4);font-size:12px">Contact: puneet.arora@mdi.ac.in</p>
+          </div>
+        </div>`;
+    } else if(res.status === "partial"){
+      state.email = email;
+      state.pid   = res.pid || uid();
+      state.resumeSection = normalizeSection(res.lastSection);
+      // Restore the arm originally assigned to this participant
+      if(res.condition){
+        state.condition    = res.condition;
+        state.conditionNum = res.conditionNum || null;
+      }
+      if(res.lotteryOrder) state.lotteryOrder = res.lotteryOrder;
+      if(res.payRound)     state.payRound     = Number(res.payRound) || null;
+      if(!state.condition)    randomCondition();
+      if(!state.lotteryOrder) randomLotteryOrder();
+      document.getElementById("app").innerHTML=`
+        <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><div class="progress-label">0% complete</div></div>
+        <div class="shell" id="sections-wrap"></div>`;
+      goSection(state.resumeSection || "block1");
+    } else {
+      state.email = email;
+      // Server returns the next arm in strict rotation:
+      // Control -> Luck -> Skill -> LuckReflect -> repeat
+      startSurvey(res.assignedCondition, res.assignedConditionNum);
+    }
+  };
+
+  // Timeout fallback — if Apps Script doesn't respond in 6s, let them in
+  const timer = setTimeout(()=>{
+    if(!done){
+      done = true;
+      showLoading(false);
+      delete window[cbName];
+      const s = document.getElementById("jsonp-email-check");
+      if(s) s.remove();
+      console.warn("Email check timed out — falling back to local random assignment");
+      state.email = email;
+      startSurvey();
+    }
+  }, 6000);
+
+  const script = document.createElement("script");
+  script.id  = "jsonp-email-check";
+  script.src = CONFIG.SCRIPT_URL
+    + "?action=checkEmail"
+    + "&email=" + encodeURIComponent(email)
+    + "&callback=" + cbName;
+  script.onerror = ()=>{
+    clearTimeout(timer);
+    if(!done){ done=true; showLoading(false); delete window[cbName]; state.email=email; startSurvey(); }
+  };
+  document.head.appendChild(script);
+}
+
+function resumeSurvey(){
+  goSection(state.resumeSection || "block1");
+}
+
+function showLoading(show){
+  const el = document.getElementById("loading");
+  if(el) el.style.display = show ? "flex" : "none";
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// RENDER FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ── COVER ─────────────────────────────────────────────────────────────────
+function renderCover(){
+  return `<div class="cover">
+    <div class="cover-logo">Management Development Institute Gurgaon</div>
+    <h1 class="cover-title">Investment Decision Study</h1>
+    <p class="cover-sub">A research study on financial decision-making. Your participation is voluntary and fully confidential. Average earnings: ₹600 - ₹700 (min ₹100, max ₹1,100).</p>
+    <div class="cover-meta">
+      <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">~15 minutes</div></div>
+      <div class="meta-item"><div class="meta-label">Earnings</div><div class="meta-value">Min ₹100 · Avg ₹600 - ₹700 · Max ₹1,100</div></div>
+      <div class="meta-item"><div class="meta-label">Researchers</div><div class="meta-value">Dr. Puneet Arora &amp; Dr. Divya Agarwal</div></div>
+    </div>
+    <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:18px 20px;max-width:380px;width:100%;margin-bottom:22px;text-align:left">
+      <label style="display:block;font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px">Full Name</label>
+      <input type="text" id="cover_name" placeholder="Your full name"
+        style="width:100%;padding:10px 13px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:var(--white);font-size:14px;box-sizing:border-box;outline:none;margin-bottom:14px"
+        onfocus="this.style.borderColor='var(--amber)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+        onkeydown="if(event.key==='Enter') document.getElementById('cover_email').focus()">
+      <div id="err-cover-name" style="display:none;color:#ffb347;font-size:12px;margin-top:-8px;margin-bottom:10px">Please enter your full name to continue.</div>
+      <label style="display:block;font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px">Institute Email ID</label>
+      <input type="email" id="cover_email" placeholder="yourname@mdi.ac.in"
+        style="width:100%;padding:10px 13px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:var(--white);font-size:14px;box-sizing:border-box;outline:none"
+        onfocus="this.style.borderColor='var(--amber)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+        onkeydown="if(event.key==='Enter') startStudy()">
+      <div id="err-cover-email" style="display:none;color:#ffb347;font-size:12px;margin-top:6px">Please enter a valid institute email address to continue.</div>
+    </div>
+    <button class="btn btn-primary" onclick="startStudy()" style="padding:13px 36px;font-size:15px">Begin →</button>
+  </div>`;
+}
+
+// ── PARTICIPANT INFORMATION PAGE ───────────────────────────────────────────
+function renderParticipantInfo(){
+  progress(3);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Information</span><h2 class="card-title">Participant Information Sheet</h2></div>
+    <p style="font-size:13.5px;line-height:1.8;margin-bottom:14px">This form aims to furnish you with information that could influence your decision regarding your participation in this research project. The individual conducting the research will address any queries you may have. Take the time to review the details provided below and raise any concerns before reaching a decision on whether to participate. Should you choose to engage in this study, your consent will be documented using this form.</p>
+    <p style="font-size:13.5px;margin-bottom:14px"><strong>Title of the study:</strong> Individual Decision-Making in Financial Contexts</p>
+    <div class="sec-label">Purpose of the Study</div>
+    <div class="info-box">This study examines how individuals make financial and investment-related decisions. The study particularly aims to better understand the factors that influence investment choices and decision processes. The findings are intended to contribute to research on financial decision-making and investor behavior, and may help improve understanding of how individuals process information and make choices in investment settings.</div>
+    <div class="sec-label">If you agree to participate in this study, you will be asked to:</div>
+    <div class="info-box">
+      • Complete a short background questionnaire about general preferences and decision styles.<br>
+      • Participate in a computerized simulated investment task involving allocation of a virtual endowment across different options.<br>
+      • Answer brief follow-up questions about your experience and decision processes.<br><br>
+      This study will take approximately 20 minutes and will include approximately 400–500 participants.
+    </div>
+    <div class="sec-label">What are the risks/discomfort involved in this study?</div>
+    <div class="info-box">The study involves minimal risks. No physical, medical, legal, or financial risks are expected in this study. To eliminate any discomfort, tasks are brief and structured with clear instructions. Participants are informed and allowed to withdraw at any time without penalty.</div>
+    <div class="sec-label">What are the possible benefits of this study?</div>
+    <div class="info-box">Participants will receive no direct personal benefit from participating in this study. However, the research may contribute to broader scientific understanding of how individuals make financial decisions. Such knowledge may inform future educational tools, decision aids, and policies designed to improve financial decision-making.</div>
+    <div class="sec-label">Do you have to participate?</div>
+    <div class="info-box">No, your participation is voluntary. You may decide not to participate at all or, if you start the study, you may withdraw at any time by just closing the link. If you would like to participate, you will have to give your consent at the end of this form.</div>
+    <div class="sec-label">Will there be any compensation?</div>
+    <div class="info-box">Each participant receives a fixed participation fee of Rs. 100 regardless of performance. Some individual tasks may have negative payoffs, but your total earnings will never be below the minimum guaranteed participation reward of Rs. 100. In addition, participants can earn an additional amount of up to Rs. 1000, based on their decisions made during the survey, with average total earnings of approximately Rs. 650.</div>
+    <div class="sec-label">Privacy &amp; Confidentiality</div>
+    <div class="info-box">Participant privacy will be protected throughout all stages of the study. Each participant will be assigned a unique numeric identification code at the start of the session. Names and other direct identifiers will not be used in the dataset used for analysis. While we do collect contact information, they are collected for payment purposes and for audit by the accounts office, and will be stored separately from your decision data and will not be linked to responses once compensation has been processed. Study results will be reported only in aggregate form so that no individual can be identified.</div>
+    <div class="sec-label">Whom to contact with questions about the study?</div>
+    <div class="info-box">Prior, during or after your participation you can contact the researcher Puneet Arora at 0124-4560345 or send an email to puneet.arora@mdi.ac.in for any questions or if you feel that you have been harmed.</div>
+    <div class="sec-label">What are my rights as a research participant?</div>
+    <div class="info-box">Participation in this study is voluntary. You can withdraw from this study at any point of time. For further queries, contact MDI Institutional Review Board by email at irb@mdi.ac.in</div>
+    <div class="sec-label">Participation</div>
+    <div class="info-box">If you agree to participate, please share your consent on the Consent form.</div>
+    <div class="warn-box" style="font-size:12px;margin-top:14px"><strong>NOTE:</strong> This study has been approved by the Institutional Review Board (IRB) of Management Development Institute Gurgaon with IRB No. MDI IRB 2026-26, and the researchers are authorized to collect data.</div>
+    ${navRow("goSection('consent')","Proceed to Consent Form →")}
+  </div>`;
+}
+
+// ── CONSENT ───────────────────────────────────────────────────────────────
+function renderConsent(){
+  progress(5);
+  const statements=[
+    "I confirm that I have read and understand the Participant Information Sheet for the above study. I have had the opportunity to consider the information, ask questions and have had these answered satisfactorily.",
+    "I understand that my participation is voluntary and that I am free to withdraw at any time during the study, without giving a reason and without my legal rights being affected.",
+    "I agree to my personal data and data relating to me collected during the study being processed as described in the Participant Information Sheet. The information collected will not be shared with anyone outside the research team and will be used solely for internal research records. Personal identifiers will not be included in any publications or presentations.",
+    "I understand that some aspects of the study procedure may not be fully explained until after my participation is complete, and that I will receive a debriefing explaining the purpose of these procedures once data collection has concluded.",
+    "I have been informed about this study's purpose, procedures, possible benefits and risks. By completing this form, I am not waiving any of my legal rights.",
+  ];
+  const rows=statements.map((s,i)=>`
+    <tr>
+      <td style="padding:12px 10px;font-size:13.5px;line-height:1.6;border:1px solid var(--light);vertical-align:middle">${i+1}. ${s}</td>
+    </tr>`).join("");
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Consent</span><h2 class="card-title">Informed Consent Form</h2></div>
+    <div class="info-box" style="margin-bottom:16px">Please read each statement carefully before indicating your consent below.</div>
+    <div class="matrix-wrap">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <div style="margin-top:20px;padding:16px;background:var(--off);border-radius:8px;border:1.5px solid var(--light)">
+      <p style="font-size:14px;font-weight:500;color:var(--dark);margin-bottom:14px">Having read the above statements, please indicate your decision:</p>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'consent_decision')"><input type="radio" name="consent_decision" value="consent"><span><strong>I Consent</strong> — I agree to participate in this study.</span></label>
+        <label class="opt" onclick="selectOpt(this,'consent_decision')"><input type="radio" name="consent_decision" value="noconsent"><span><strong>I Do Not Consent</strong> — I do not wish to participate.</span></label>
+      </div>
+    </div>
+    <div id="err-consent" class="error-box" style="margin-top:12px">Please indicate your decision before continuing.</div>
+    ${navRow("submitConsent()")}
+  </div>`;
+}
+
+// ── BLOCK 1 — DEMOGRAPHICS ────────────────────────────────────────────────
+function renderBlock1(){
+  progress(12);
+  const states=["Andaman & Nicobar Islands","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Dadra & Nagar Haveli and Daman & Diu","Delhi (NCT)","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu & Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Lakshadweep","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Other"];
+  const stateOpts=states.map(s=>`<option value="${s}">${s}</option>`).join("");
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 1</span><h2 class="card-title">About You</h2></div>
+    <div class="q-note" style="margin-bottom:16px;font-style:normal;color:var(--slate);font-size:13px">Your responses are kept strictly confidential and used solely for research purposes in anonymised form. Your participation and answers will in no way affect, nor be taken into consideration for, your grades or standing at the institution.</div>
+    <div class="q-block"><div class="q-label"><span class="q-num">1</span>Institute email ID</div><input type="email" id="b1_email" placeholder="yourname@mdi.ac.in" value="${state.email||''}" readonly style="background:var(--light);color:var(--mid);cursor:not-allowed"></div>
+    <div class="q-block">
+  <div class="q-label"><span class="q-num">2</span>Completed age (in years)</div>
+  <input type="number" id="b1_age" min="18" max="60" placeholder="e.g. 24">
+</div>
+    <div class="q-block"><div class="q-label"><span class="q-num">3</span>Gender</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'b1_gender')"><input type="radio" name="b1_gender" value="1"><span>Male</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_gender')"><input type="radio" name="b1_gender" value="2"><span>Female</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_gender')"><input type="radio" name="b1_gender" value="3"><span>Non-binary / third gender</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_gender')"><input type="radio" name="b1_gender" value="4"><span>Prefer not to say</span></label>
+      </div>
+    </div>
+    <div class="q-block"><div class="q-label"><span class="q-num">4</span>State / union territory of birth</div>
+      <select id="b1_state"><option value="">— Select —</option>${stateOpts}</select>
+    </div>
+    <div class="q-block"><div class="q-label"><span class="q-num">5</span>Parents' combined annual income</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'b1_income')"><input type="radio" name="b1_income" value="1"><span>₹5 – 10 lakh</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_income')"><input type="radio" name="b1_income" value="2"><span>₹10 – 15 lakh</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_income')"><input type="radio" name="b1_income" value="3"><span>₹15 – 20 lakh</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_income')"><input type="radio" name="b1_income" value="4"><span>₹20 – 25 lakh</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_income')"><input type="radio" name="b1_income" value="5"><span>₹25 lakh and above</span></label>
+      </div>
+    </div>
+    <div class="q-block"><div class="q-label"><span class="q-num">6</span>Course currently enrolled in</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'b1_course')"><input type="radio" name="b1_course" value="1"><span>PGDM</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_course')"><input type="radio" name="b1_course" value="2"><span>PGDM HR</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_course')"><input type="radio" name="b1_course" value="3"><span>PGDM Business Analytics</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_course')"><input type="radio" name="b1_course" value="4"><span>PGDM IB</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_course')"><input type="radio" name="b1_course" value="5"><span>PGDM BFS</span></label>
+      </div>
+    </div>
+    <div class="q-block"><div class="q-label"><span class="q-num">7</span>Year of degree</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'b1_year')"><input type="radio" name="b1_year" value="1"><span>1st Year</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_year')"><input type="radio" name="b1_year" value="2"><span>2nd Year</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_year')" onclick="document.getElementById('b1_year_other_wrap').style.display='block'"><input type="radio" name="b1_year" value="other" onchange="document.getElementById('b1_year_other_wrap').style.display='block'"><span>Other</span></label>
+      </div>
+      <div id="b1_year_other_wrap" style="display:none;margin-top:8px"><input type="text" id="b1_year_other" placeholder="Please specify"></div>
+    </div>
+    <div class="q-block"><div class="q-label"><span class="q-num">8</span>CAT percentile</div>
+      <input type="number" id="b1_cat" min="0" max="100" step="0.01" placeholder="e.g. 97.5">
+    </div>
+    <div class="q-block"><div class="q-label"><span class="q-num">9</span>Have you ever invested in the stock market or mutual funds?</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'b1_invest')"><input type="radio" name="b1_invest" value="1"><span>Yes</span></label>
+        <label class="opt" onclick="selectOpt(this,'b1_invest')"><input type="radio" name="b1_invest" value="2"><span>No</span></label>
+      </div>
+    </div>
+    <div id="err-b1" class="error-box">Please complete all fields before continuing.</div>
+    ${navRow("submitBlock1()")}
+  </div>`;
+}
+
+// ── BLOCK 2 — FINANCIAL LITERACY (timed, randomised, harder) ──────────────
+const FL_QUESTIONS = [
+  {
+    id:"fl1",
+    names:["Rajesh","Priya"],
+    q:(n)=>`${n[0]} invested ₹1,00,000 in a fixed deposit at 8% per year compounded annually. After 3 years, which is closest to his total amount?`,
+    opts:[["A","₹1,08,000"],["B","₹1,24,000"],["C","₹1,25,971"],["D","₹1,32,000"]],
+    correct:"C",
+    expl:"Compound interest: 1,00,000 × (1.08)³ = ₹1,25,971"
+  },
+  {
+    id:"fl2",
+    names:["Meera","Ananya","Sana"],
+    q:(n)=>`${n[0]} holds shares in a company. The company announces a 1:2 stock split. If ${n[0]} held 100 shares at ₹500 each, what is her position immediately after the split?`,
+    opts:[["A","100 shares at ₹500"],["B","200 shares at ₹250"],["C","50 shares at ₹1,000"],["D","200 shares at ₹500"]],
+    correct:"B",
+    expl:"A 1:2 split doubles share count and halves price. 100 × ₹500 → 200 × ₹250. Total value unchanged."
+  },
+  {
+    id:"fl3",
+    names:["Vikram","Arjun"],
+    q:(n)=>`${n[0]} buys a bond with face value ₹1,000, coupon rate 7%, and 5 years to maturity. If market interest rates rise to 9%, what happens to the bond's market price?`,
+    opts:[["A","It rises above ₹1,000"],["B","It stays at ₹1,000"],["C","It falls below ₹1,000"],["D","It depends on the company's profits"]],
+    correct:"C",
+    expl:"When market rates rise above the coupon rate, bonds trade at a discount (below face value) because they offer less than the market rate."
+  },
+  {
+    id:"fl4",
+    names:["Kavya","Deepa","Nisha"],
+    q:(n)=>`${n[0]} notices that her large-cap equity mutual fund has an expense ratio of 2.5% per year, while an identical index fund charges 0.1%. Over 20 years on a ₹10 lakh investment (assuming 10% gross return), approximately how much more does the high-cost fund cost her?`,
+    opts:[["A","₹25,000"],["B","₹2.5 lakh"],["C","₹12 lakh"],["D","Less than ₹1 lakh"]],
+    correct:"C",
+    expl:"Over 20 years, a 2.4% fee difference compounds dramatically. The high-cost fund ends with ~₹38L vs ~₹50L for the index fund — a difference of ~₹12 lakh."
+  },
+  {
+    id:"fl5",
+    names:["Suresh","Rahul"],
+    q:(n)=>`${n[0]} buys 100 shares at ₹50 each. He later sells them at ₹50 each. Ignoring transaction costs, What is ${n[0]}'s outcome?`,
+    opts:[["A","Profit of ₹500"],["B","Loss of ₹500"],["C","Profit of ₹50"],["D","No profit, no loss"]],
+    correct:"D",
+    expl:"Rohan bought 100 shares at ₹50 each and sold them at the same price of ₹50 each. Since the selling price equals the purchase price, he neither made a profit nor incurred a loss. Therefore, his net gain is ₹0 (break-even)."
+  }
+];
+
+function renderBlock2(){
+  progress(22);
+  if(!state.fl2RandomOrder) state.fl2RandomOrder=shuffle([0,1,2,3,4]);
+  const orderedQs=state.fl2RandomOrder.map(i=>FL_QUESTIONS[i]);
+  const maleNames=["Rajesh","Vikram","Suresh","Arjun","Rahul"];
+  const femaleNames=["Priya","Meera","Ananya","Sana","Kavya","Deepa","Nisha"];
+  const questionsHtml=orderedQs.map((q,qi)=>{
+    const isMale=maleNames.some(n=>q.names.includes(n));
+    const namePool=isMale?maleNames.filter(n=>q.names.includes(n)):femaleNames.filter(n=>q.names.includes(n));
+    const name=namePool[0];
+    const optsHtml=q.opts.map(([v,l])=>`<label class="opt" onclick="selectOpt(this,'${q.id}')"><input type="radio" name="${q.id}" value="${v}"><span>${l}</span></label>`).join("");
+    return `<div class="q-block">
+      <div class="q-label"><span class="q-num">Q${qi+1}</span>${q.q([name])}</div>
+      <div class="options">${optsHtml}</div>
+    </div>`;
+  }).join("");
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 2</span><h2 class="card-title">Financial Knowledge</h2></div>
+    <div class="warn-box">You have <strong>3 minutes</strong> to complete this section. Answer all questions before the timer runs out.</div>
+    <div class="honesty" style="margin-bottom:14px;border-left-color:var(--navy);font-size:13px;font-style:normal"><strong>Honesty Statement:</strong> Please answer the following questions entirely on your own, without consulting any external sources, calculators, or other people. Your honest, independent responses are essential for the integrity of this research.</div>
+    <div class="timer-label" id="timer-label">Time remaining: 3:00</div>
+    <div class="timer-bar-wrap"><div class="timer-bar-fill" id="timer-bar" style="width:100%"></div></div>
+    ${questionsHtml}
+    <div id="err-b2" class="error-box">Please answer all questions before continuing.</div>
+    ${navRow("submitBlock2()")}
+  </div>`;
+}
+
+// ── BLOCK 3 — INSTRUCTIONS ────────────────────────────────────────────────
+function makeAssetTable(){
+  return Object.entries(ASSETS).map(([k,a])=>`
+    <tr><td><strong>${a.label}</strong></td><td>${a.desc}</td>
+    <td style="text-align:center">${a.ret}</td>
+    <td style="text-align:center">${a.sd===0?"None":"±"+a.sd+"%"}</td>
+    <td style="text-align:center">${a.range}</td>
+    <td style="text-align:center;padding:6px 8px">
+      <input type="number" id="exp_${k}" min="0" max="40000" step="500" placeholder="0"
+        style="width:90px;padding:6px 8px;font-size:13px;border:1.5px solid var(--light);border-radius:6px;text-align:right"
+        oninput="updateExpTotal()">
+    </td></tr>`).join("");
+}
+
+// ── BLOCK 3: Simulation (practice) ──────────────────────────────────────────
+function renderBlock3(){
+  progress(28);
+  const assetRows=makeAssetTable();
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 3 — Step 1 of 2</span><h2 class="card-title">How the Investment Task Works</h2></div>
+    <div style="background:var(--navy);color:#fff;border-radius:8px;padding:13px 18px;margin-bottom:18px;font-size:14px;font-weight:600;letter-spacing:0.01em">
+      ⚠ This is a practice round. Your decisions here are NOT recorded and will NOT affect your earnings.
+    </div>
+    <div class="sec-label">Instructions</div>
+    <div class="info-box">
+      • At the start of each round, you will receive <strong>40,000 Experimental Units (EU)</strong> to invest.<br>
+      • Allocate the 40,000 EU across five assets. Your allocations must sum to exactly 40,000 EU.<br>
+      • Each asset can generate different returns. The return for each asset will be randomly drawn from the range shown next to it.<br>
+      • Your final earnings will be paid at the rate of 100 EU = ₹0.70.<br>
+      • After this practice round, you will answer a few understanding questions before the main investment game begins.
+    </div>
+    <div class="sec-label">Asset Menu</div>
+    <table class="inst-table">
+      <thead><tr><th>Asset</th><th>Description</th><th>Expected Return</th><th>Risk Range</th><th>Return Range</th><th>Amount to Allocate (EU)</th></tr></thead>
+      <tbody>${assetRows}</tbody>
+    </table>
+    <div class="sec-label">Example</div>
+    <div class="warn-box">
+      You invest 20,000 EU in Asset H and 20,000 EU in Asset V. If Asset H drew <strong>+26%</strong> and Asset V drew <strong>+40%</strong>:<br>
+      Portfolio value = 40,000 (Principal) + (20,000 × 26%) + (20,000 × 40%) = <strong>66,000 EU</strong><br>
+      → payout = 66,000 × ₹0.007 = <strong>₹462</strong>
+    </div>
+    <div class="sec-label">Try It Yourself — Return Explorer</div>
+    <p style="font-size:13px;color:var(--slate);margin-bottom:10px">For each simulation, a random number within the return range is independently drawn for each of the five asset classes.</p>
+    <p style="font-size:13.5px;color:var(--slate);margin-bottom:12px">Enter any allocation and simulate a return. Try as many times as you like.</p>
+    <div class="alloc-total" id="exp-total">Total: <span class="alloc-total-val alloc-err">0 / 40,000</span></div>
+    <div id="exp-error" class="error-box" style="margin-top:6px">Allocations must sum to exactly 40,000 EU to simulate.</div>
+    <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
+      <button class="btn btn-primary" onclick="runExplorer()">Simulate Returns →</button>
+      <button class="btn" id="exp-reset-btn" onclick="resetExplorer()" style="display:none;border-color:var(--light);background:var(--white);color:var(--slate)">Try Again ↺</button>
+    </div>
+    <div id="exp-result" style="display:none;margin-top:14px"></div>
+    <div style="margin-top:24px;padding-top:16px;border-top:1.5px solid var(--light);display:flex;justify-content:flex-end">
+      <button class="btn btn-primary" onclick="goSection('block3b')">Continue to Understanding Questions →</button>
+    </div>
+  </div>`;
+}
+
+// ── BLOCK 3b: Comprehension questions ───────────────────────────────────────
+function renderBlock3b(){
+  progress(33);
+  const assetRows=makeAssetTable();
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 3 — Step 2 of 2</span><h2 class="card-title">Understanding Questions</h2></div>
+    <div class="info-box">
+      The asset menu is shown below for reference. Please answer the questions that follow — you have <strong>two attempts</strong> to answer at least one correctly.<br>
+      If you are unable to do so, the survey will end and you will receive only the ₹100 participation fee.
+    </div>
+    <div class="sec-label">Asset Menu (for reference)</div>
+    <table class="inst-table">
+      <thead><tr><th>Asset</th><th>Description</th><th>Expected Return</th><th>Risk Range</th><th>Return Range</th><th>Amount to Allocate (EU)</th></tr></thead>
+      <tbody>${assetRows}</tbody>
+    </table>
+    <div style="margin-top:20px">
+      <div class="warn-box" id="comp-banner">Attempt 1 of 2 — answer at least one correctly to proceed.</div>
+      <div id="comp-q-wrap"></div>
+      <div id="err-comp" class="error-box">Please select an answer.</div>
+      <div id="comp-expl" style="display:none;background:#eaf3de;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:11px 15px;font-size:13.5px;color:var(--dark);margin-top:8px"></div>
+      <div style="margin-top:14px;display:flex;justify-content:flex-end">
+        <button class="btn btn-primary" id="comp-btn" onclick="submitComp()">Check Answer →</button>
+      </div>
+    </div>
+    <div id="block3-nav" style="display:none;margin-top:16px">
+      ${navRow("afterComp()","Continue to Study →")}
+    </div>
+  </div>`;
+}
+
+// Comprehension questions
+const COMP_A=[
+  {q:"You invest all 40,000 EU in an asset with expected return +5% and risk range −1% to +11%. What is the minimum possible ending value?",opts:[["A","36,000"],["B","39,600"],["C","40,000"],["D","44,400"]],correct:"B",expl:"The minimum draw is −1% (5%−6%). Ending = 40,000 × 0.99 = 39,600 EU."},
+  {q:"You invest all 40,000 EU in an asset with expected return +8% and risk range −7% to +23%. What is the minimum possible ending value?",opts:[["A","30,400"],["B","37,200"],["C","40,000"],["D","43,200"]],correct:"B",expl:"The minimum draw is −7% (8%−15%). Ending = 40,000 × 0.93 = 37,200 EU."},
+  {q:"You invest 20,000 EU in Cash (0%) and 20,000 EU in Asset L (range −2% to +10%). Asset L draws +10%. What is your total ending value?",opts:[["A","40,000"],["B","42,000"],["C","44,000"],["D","46,000"]],correct:"B",expl:"Cash: 20,000 EU. Asset L: 20,000 × 1.10 = 22,000 EU. Total = 42,000 EU."},
+];
+const COMP_B=[
+  {q:"You invest all 40,000 EU in an asset with expected return +6% and risk range −9% to +21%. What is the minimum possible ending value?",opts:[["A","32,400"],["B","36,400"],["C","40,000"],["D","42,400"]],correct:"B",expl:"The minimum draw is −9% (6%−15%). Ending = 40,000 × 0.91 = 36,400 EU."},
+  {q:"You invest all 40,000 EU in an asset with expected return +13% and risk range −12% to +38%. What is the minimum possible ending value?",opts:[["A","24,000"],["B","35,200"],["C","40,000"],["D","45,200"]],correct:"B",expl:"The minimum draw is −12% (13%−25%). Ending = 40,000 × 0.88 = 35,200 EU."},
+  {q:"You invest 24,000 EU in Asset M (draws +8% this round) and 16,000 EU in Cash. What is your ending value?",opts:[["A","41,920"],["B","42,400"],["C","40,000"],["D","43,920"]],correct:"A",expl:"Asset M: 24,000 × 1.08 = 25,920 EU. Cash: 16,000 EU. Total = 41,920 EU."},
+];
+
+function getCompQs(){return state.compAttempts===0?COMP_A:COMP_B;}
+
+// showCompSection removed — block3b now auto-initialises comp questions
+
+function showCompQ(num){
+  const cqs=getCompQs();
+  if(num>cqs.length) return;
+  const cq=cqs[num-1];
+  state.compQuestion=num;
+  const atBanner=document.getElementById("comp-banner");
+  if(atBanner) atBanner.textContent=`Attempt ${state.compAttempts+1} of 2, Question ${num} of 3 — answer at least one correctly.`;
+  const optsHtml=cq.opts.map(([v,l])=>`<label class="opt" onclick="selectOpt(this,'comp_ans')"><input type="radio" name="comp_ans" value="${v}"><span>${l}</span></label>`).join("");
+  document.getElementById("comp-q-wrap").innerHTML=`<div class="q-block" style="margin-top:14px"><div class="q-label">${cq.q}</div><div class="options">${optsHtml}</div></div>`;
+  document.getElementById("comp-expl").style.display="none";
+  document.getElementById("err-comp").style.display="none";
+  const btn=document.getElementById("comp-btn");
+  if(btn){btn.textContent="Check Answer →";btn.onclick=submitComp;}
+}
+
+function submitComp(){
+  const ans=getChecked("comp_ans");
+  if(!ans){document.getElementById("err-comp").style.display="block";return;}
+  document.getElementById("err-comp").style.display="none";
+  const cqs=getCompQs();
+  const cq=cqs[state.compQuestion-1];
+  if(ans===cq.correct){
+    const expl=document.getElementById("comp-expl");
+    expl.textContent="✓ Correct! "+cq.expl;
+    expl.style.background="#eaf3de";expl.style.borderLeftColor=getComputedStyle(document.documentElement).getPropertyValue("--green");
+    expl.style.display="block";
+    const btn=document.getElementById("comp-btn");
+    btn.textContent="Proceed →";btn.onclick=afterComp;
+    const nav=document.getElementById("block3-nav");
+    if(nav) nav.style.display="block";
+  } else {
+    const expl=document.getElementById("comp-expl");
+    expl.textContent="Not quite. "+cq.expl;
+    expl.style.background="#fdf0ef";expl.style.borderLeftColor="#C0392B";
+    expl.style.display="block";
+    if(state.compQuestion<cqs.length){
+      const btn=document.getElementById("comp-btn");
+      btn.textContent="Try Next →";btn.onclick=()=>showCompQ(state.compQuestion+1);
+    } else {
+      if(state.compAttempts===0){
+        state.compAttempts=1;state.compQuestion=1;
+        expl.textContent+=" Please re-read the instructions. You have one more attempt.";
+        const btn=document.getElementById("comp-btn");
+        btn.textContent="Re-read Instructions →";btn.onclick=()=>goSection("block3");
+      } else {
+        const btn=document.getElementById("comp-btn");
+        btn.textContent="End Survey";
+        btn.onclick=()=>{
+          document.getElementById("sections-wrap").innerHTML=`<div class="end-screen"><div class="end-inner">
+            <h2 style="font-family:var(--font-h);color:var(--navy);margin-bottom:12px">Survey Ended</h2>
+            <p style="color:var(--slate);font-size:14px;line-height:1.7">You were unable to pass the comprehension check in two attempts. The survey has ended.<br><br>You will receive ₹100 as a participation fee, processed within one week.</p>
+            <p style="margin-top:16px;color:var(--mid);font-size:12px">Contact: puneet.arora@mdi.ac.in</p>
+          </div></div>`;
+          saveBlock("SURVEY_END",{reason:"comp_failed",pid:state.pid});
+        };
+      }
+    }
+  }
+}
+
+// Routing after comprehension check: Control never sees any peer information
+function afterComp(){
+  goSection(state.condition==="Control"?"block4r":"block4");
+}
+
+// ── BLOCK 4 — PEER INFORMATION (TREATMENT GROUPS ONLY) ───────────────────
+function renderBlock4(){
+  progress(40);
+  if(state.condition==="Control"){ goSection("block4r"); return ""; }
+  const isLuck=state.condition==="Luck"||state.condition==="LuckReflect";
+  const cls=isLuck?"luck":"skill";
+  const pid=peerId();
+
+  // Attribution statement with key phrases emphasised for a stronger,
+  // more memorable manipulation.
+  const attrHtml=isLuck
+    ? `We believe their high earnings were mainly due to <strong>luck</strong>. They spent <strong>relatively little time thinking</strong> before investing, and their investment choices happened to be matched with <strong>favorable market conditions</strong>.`
+    : `We believe their high earnings were mainly due to <strong>skill</strong>. They spent <strong>relatively more time thinking</strong> before investing, and their investment choices reflected a <strong>strategy that performed well</strong>.`;
+
+  const heroHeading=isLuck ? "Why did they earn so much?" : "Why did they earn so much?";
+  const heroIcon=isLuck ? ATTR_ICON_LUCK : ATTR_ICON_SKILL;
+
+  const peerCard=`<div class="peer-card"><div class="peer-avatar">${PEER_AVATAR_SVG}</div><div class="peer-info"><div class="peer-name">Participant ${pid}</div><div class="peer-sub">Management Development Institute, Gurgaon</div></div></div>`;
+
+  const content=`
+    <p style="font-size:14px;line-height:1.7;margin-bottom:14px">In this investment game, you have been matched with a participant who completed a similar task in an earlier session. Before you begin, we will show you some information about this participant's outcome in the task. This information is provided for reference only. The other participant's earnings will not affect your investment opportunities, returns, or earnings in any way. Your earnings will depend solely on your own investment decisions and the returns realized during the task.</p>
+    ${peerCard}
+    <div class="info-box" style="margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span class="pi-ico">${ICON_IDCARD}</span><span>Your Participant ID: <strong>${state.pid}</strong></span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span class="pi-ico">${ICON_LINK}</span><span>Your Paired Participant ID: <strong>${pid}</strong></span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span class="pi-ico">${ICON_COINS}</span><span>Your Paired Participant's Earnings: <strong style="font-size:19px;color:var(--navy)">around 56,000 EU</strong></span></div>
+    </div>
+    <div class="attr-hero ${cls}">
+      <div class="attr-hero-icon">${heroIcon}</div>
+      <div class="attr-hero-body">
+        <div class="attr-hero-title">${heroHeading} <span style="font-size:18px">&#10024;</span></div>
+        <p class="attr-hero-text">${attrHtml}</p>
+      </div>
+    </div>`;
+  const reflHtml=state.condition==="LuckReflect"?`
+    <div style="margin-top:20px;padding-top:16px;border-top:1.5px solid var(--light)">
+      <div class="sec-label">Before you invest — your goals</div>
+      <div class="q-label">Select the <strong>two</strong> investment goals that align most closely with your objectives.</div>
+      <div id="ref-goals" class="options" style="margin-top:8px">
+        ${["Achieving long-term financial security and retirement readiness","Saving for a major life goal (education, home, family)","Preserving capital and avoiding losses","Generating steady, predictable returns","Maximising growth even if it means accepting volatility"].map((g,i)=>`<label class="opt" onclick="toggleGoal(${i},this)"><input type="checkbox" id="ref_${i}" value="${i}"><span>${g}</span></label>`).join("")}
+      </div>
+      <div class="q-note">Select exactly 2.</div>
+      <div id="err-ref" class="error-box">Please select exactly 2 goals.</div>
+    </div>`:"";
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 4</span><h2 class="card-title">Your Paired Participant</h2></div>
+    ${content}${reflHtml}
+    ${navRow("submitBlock4()")}
+  </div>`;
+}
+
+function toggleGoal(i,el){
+  if(!state.answers.ref_goals) state.answers.ref_goals=[];
+  const cb=document.getElementById(`ref_${i}`);
+  const idx=state.answers.ref_goals.indexOf(i);
+  if(idx>-1){state.answers.ref_goals.splice(idx,1);cb.checked=false;el.classList.remove("selected");}
+  else if(state.answers.ref_goals.length<2){state.answers.ref_goals.push(i);cb.checked=true;el.classList.add("selected");}
+}
+
+// ── ATTENTION CHECK QUESTIONS ─────────────────────────────────────────────
+// Treatment groups: peer earnings + attribution + one filler question.
+// Control group: filler questions only (no peer was ever mentioned to them).
+const FILLERS={
+  Control:[
+    // First question is the endowment recall — same two-attempt logic as treatment arms.
+    {id:"ac_recall",q:"How many Experimental Units (EU) will you receive to invest at the start of each investment round?",opts:["20,000 EU","40,000 EU","56,000 EU","60,000 EU"],correct:"40,000 EU"},
+    {id:"ac_f2",q:"What is 14 − 6?",opts:["6","7","8","9"],correct:"8"},
+    {id:"ac_f3",q:"What is 3 × 4?",opts:["7","12","14","16"],correct:"12"},
+    {id:"ac_f4",q:"Which of the following is a season?",opts:["Monday","Winter","April","Morning"],correct:"Winter"},
+  ],
+  Luck:[
+    {id:"ac_f1",q:"What is 5 + 7?",opts:["10","11","12","13"],correct:"12"},
+    {id:"ac_f2",q:"What is 17 − 9?",opts:["6","7","8","9"],correct:"8"},
+    {id:"ac_f3",q:"Which of the following is a fruit?",opts:["Carrot","Broccoli","Mango","Spinach"],correct:"Mango"},
+  ],
+  Skill:[
+    {id:"ac_f1",q:"What is 9 + 6?",opts:["13","14","15","16"],correct:"15"},
+    {id:"ac_f2",q:"What is 4 × 5?",opts:["16","18","20","24"],correct:"20"},
+    {id:"ac_f3",q:"Which of the following is a planet?",opts:["Sun","Moon","Mars","Comet"],correct:"Mars"},
+  ],
+  LuckReflect:[
+    {id:"ac_f1",q:"What is 8 + 4?",opts:["10","11","12","13"],correct:"12"},
+    {id:"ac_f2",q:"What is 18 − 9?",opts:["7","8","9","10"],correct:"9"},
+    {id:"ac_f3",q:"Which of the following is a colour?",opts:["Circle","Square","Triangle","Blue"],correct:"Blue"},
+  ],
+};
+
+function renderBlock4Recall(){
+  progress(45);
+
+  // Build the full question list once, then freeze the randomised order in
+  // state so it survives re-renders (e.g. after a wrong-answer reveal).
+  if(!state.acOrder){
+    const fillers=FILLERS[state.condition]||FILLERS.Control;
+    let items=fillers.map(f=>({
+      id:f.id, q:f.q, correct:f.correct,
+      opts:f.opts.map(o=>[o,o])          // [value, label]
+    }));
+
+    if(state.condition!=="Control"){
+      const isLuck=state.condition==="Luck"||state.condition==="LuckReflect";
+      const pid=peerId();
+      items.push({
+        id:"ac_combined",
+        q:"Which of the following best describes your paired participant's earnings and what they attributed them to?",
+        correct:isLuck?"56k_luck":"56k_skill",
+        opts:[
+          ["56k_luck",  `Paired participant ${pid} earned around 56,000 EU, mainly due to luck.`],
+          ["56k_skill", `Paired participant ${pid} earned around 56,000 EU, mainly due to skill.`],
+          ["48k_luck",  `Paired participant ${pid} earned around 48,000 EU, mainly due to luck.`],
+          ["48k_skill", `Paired participant ${pid} earned around 48,000 EU, mainly due to skill.`],
+        ]
+      });
+    }
+
+    // Randomise question order, and option order within each question
+    items = shuffle(items).map(it=>({...it, opts: shuffle(it.opts)}));
+    state.acOrder = items;
+  }
+
+  const items = state.acOrder;
+  const body = items.map((it,qi)=>{
+    const opts = it.opts.map(([v,l])=>
+      `<label class="opt" onclick="selectOpt(this,'${it.id}')"><input type="radio" name="${it.id}" value="${v}"><span>${l}</span></label>`
+    ).join("");
+    return `<div class="q-block">
+      <div class="q-label"><span class="q-num">${qi+1}</span>${it.q}</div>
+      <div class="options">${opts}</div>
+      <div id="fb_${it.id}" class="ac-feedback" style="display:none;margin-top:8px"></div>
+    </div>`;
+  }).join("");
+
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Check</span><h2 class="card-title">Attention Check Questions</h2></div>
+    <div class="info-box">Before proceeding, please answer the following questions.</div>
+    ${body}
+    <div id="recall-reprompt" style="display:none;margin-top:12px"></div>
+    <div id="err-recall" class="error-box">Please answer all questions.</div>
+    ${navRow("submitRecall()")}
+  </div>`;
+}
+
+
+// ── LOTTERY TASKS ─────────────────────────────────────────────────────────
+function renderLotteryA(){
+  return state.lotteryOrder==="HL_first"?renderHL(1):renderLA(1);
+}
+function renderLotteryB(){
+  return state.lotteryOrder==="HL_first"?renderLA(2):renderHL(2);
+}
+
+function renderHL(taskNum){
+  taskNum=taskNum||1;
+  progress(52);
+  state.hlSwitched=false;
+  state.hlPayRow=null;
+  state.hlManual={};
+  const probs=["10%/90%","20%/80%","30%/70%","40%/60%","50%/50%","60%/40%","70%/30%","80%/20%","90%/10%","100%/0%"];
+  const aOpts=Array(9).fill("₹200 or ₹160").concat(["₹200 (certain)"]);
+  const bOpts=Array(9).fill("₹350 or ₹10").concat(["₹350 (certain)"]);
+  const aHigh=[200,200,200,200,200,200,200,200,200,200];
+  const aLow= [160,160,160,160,160,160,160,160,160,160];
+  const bHigh=[350,350,350,350,350,350,350,350,350,350];
+  const bLow= [ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+  const aProbs=[10,20,30,40,50,60,70,80,90,100];
+  const rows=aProbs.map((p,i)=>{
+    const aLowP=100-p; const bLowP=100-p;
+    const aCell=i<9
+      ?`<div style="font-size:13px">₹${aHigh[i]} <span style="color:var(--slate);font-size:11px">with ${p}%</span></div><div style="font-size:13px">₹${aLow[i]} <span style="color:var(--slate);font-size:11px">with ${aLowP}%</span></div>`
+      :`<div style="font-size:13px;font-weight:600">₹${aHigh[i]} (certain)</div>`;
+    const bCell=i<9
+      ?`<div style="font-size:13px">₹${bHigh[i]} <span style="color:var(--slate);font-size:11px">with ${p}%</span></div><div style="font-size:13px">₹${bLow[i]} <span style="color:var(--slate);font-size:11px">with ${bLowP}%</span></div>`
+      :`<div style="font-size:13px;font-weight:600">₹${bHigh[i]} (certain)</div>`;
+    return `<tr>
+      <td class="row-lbl">${i+1}</td>
+      <td style="padding:8px 10px">
+        <label style="cursor:pointer;display:flex;align-items:center;gap:10px">
+          <input type="radio" name="hl_${i}" value="A" id="hl_${i}_A" onchange="hlChange(${i},'A')" style="flex-shrink:0">
+          <div>${aCell}</div>
+        </label>
+      </td>
+      <td style="padding:8px 10px">
+        <label style="cursor:pointer;display:flex;align-items:center;gap:10px">
+          <input type="radio" name="hl_${i}" value="B" id="hl_${i}_B" onchange="hlChange(${i},'B')" style="flex-shrink:0">
+          <div>${bCell}</div>
+        </label>
+      </td>
+    </tr>`;
+  }).join("");
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Choice Task ${taskNum}</span><h2 class="card-title">Choice Task ${taskNum}</h2></div>
+    <div class="info-box">
+      In each row, choose between Option A (safer) and Option B (riskier).<br>
+      • The probability of receiving the high payoff increases as you move down the table.<br>
+      • Once you choose Option B, all subsequent rows will automatically be recorded as Option B.<br>
+      • One row will be randomly selected for payment.<br>
+      • The option you chose in the selected row will be played for real, and the outcome will affect your earnings.<br>
+      Please review each row carefully before making your choices.
+    </div>
+    <div class="warn-box" style="font-size:13px"><strong>Option A:</strong> High = ₹200, Low = ₹160 &nbsp;|&nbsp; <strong>Option B:</strong> High = ₹350, Low = ₹10</div>
+    <table class="task-table" style="margin-top:14px">
+      <thead><tr><th style="width:50px">Row</th><th>Option A (Safer)</th><th>Option B (Riskier)</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div id="err-hl" class="error-box">Please answer all 10 rows.</div>
+    <div id="hl-pay-row-box" style="display:none;margin-top:12px;padding:12px 16px;background:var(--amber-lt);border:1.5px solid var(--amber);border-radius:8px;font-size:13.5px;text-align:center">
+      <span style="color:var(--dark)">We will reveal your outcome from this lottery at the end of the survey.</span>
+    </div>
+    ${navRow("submitHL()")}
+  </div>`;
+}
+
+function hlChange(row,choice){
+  if(!state.hlManual) state.hlManual={};
+  state.hlManual[row]=choice;
+  // Find the earliest row the participant manually chose B in
+  let firstB=-1;
+  for(let i=0;i<10;i++){
+    if(state.hlManual[i]==="B"){firstB=i;break;}
+  }
+  // Auto-record B for all rows after the first B; unlock the rest
+  for(let i=0;i<10;i++){
+    const aEl=document.getElementById(`hl_${i}_A`);
+    const bEl=document.getElementById(`hl_${i}_B`);
+    if(!aEl) continue;
+    if(firstB>=0 && i>firstB){
+      // Row is after first B — automatically recorded as Option B
+      if(bEl){bEl.checked=true;bEl.disabled=false;bEl.closest("label").style.opacity="1";}
+      aEl.checked=false;
+      aEl.disabled=true;
+      aEl.closest("label").style.opacity="0.4";
+    } else {
+      // Row is before or at firstB — fully unlocked; restore manual choice if any
+      aEl.disabled=false;
+      aEl.closest("label").style.opacity="1";
+      if(bEl){bEl.disabled=false;bEl.closest("label").style.opacity="1";}
+      const m=state.hlManual[i];
+      aEl.checked=m==="A";
+      if(bEl) bEl.checked=m==="B";
+    }
+  }
+  state.hlSwitched = firstB>=0;
+  checkHLComplete();
+}
+
+function checkHLComplete(){
+  let allDone=true;
+  for(let i=0;i<10;i++){if(!getChecked(`hl_${i}`)){allDone=false;break;}}
+  if(allDone){
+    if(!state.hlPayRow) state.hlPayRow=Math.floor(Math.random()*10)+1; // drawn silently; revealed at end of survey
+    const box=document.getElementById("hl-pay-row-box");
+    if(box) box.style.display="block";
+  }
+}
+
+function renderLA(taskNum){
+  taskNum=taskNum||1;
+  progress(52);
+  state.laSwitched=false;
+  state.laPayRow=null;
+  state.laManual={};
+  const losses=[60,90,120,150,175,200];
+  const rows=losses.map((loss,i)=>`<tr>
+    <td class="row-lbl">${i+1}</td>
+    <td style="text-align:center;font-size:13px;line-height:1.8">
+      <div>Win ₹200 <span style="color:var(--slate);font-size:11px">with 50%</span></div>
+      <div>Lose ₹${loss} <span style="color:var(--slate);font-size:11px">with 50%</span></div>
+    </td>
+    <td><label style="cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center"><input type="radio" name="la_${i}" value="accept" id="la_${i}_accept" onchange="laChange(${i},'accept')"> Accept</label></td>
+    <td><label style="cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center"><input type="radio" name="la_${i}" value="reject" id="la_${i}_reject" onchange="laChange(${i},'reject')"> Reject</label></td>
+  </tr>`).join("");
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Choice Task 2</span><h2 class="card-title">Choice Task 2</h2></div>
+    <div class="info-box">
+      In each row, you may Accept or Reject a lottery that offers a 50% chance of winning ₹200 and a 50% chance of losing the amount shown in that row.<br>
+      • Accept: a random coin flip determines whether you win or lose.<br>
+      • Reject: no gain and no loss.<br>
+      • Once you reject a lottery, all subsequent lotteries will automatically be rejected.<br>
+      After all decisions are made, one row will be randomly selected for payment. If you accepted the lottery in that row, a coin flip will determine your gain or loss. If you rejected it, your earnings will remain unchanged. Any gain or loss from this task will be added to your final earnings and paid accordingly.
+    </div>
+    <table class="task-table" style="margin-top:14px">
+      <thead><tr><th style="width:50px">Row</th><th>Gamble</th><th>Accept</th><th>Reject</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div id="err-la" class="error-box">Please answer all 6 rows.</div>
+    <div id="la-pay-row-box" style="display:none;margin-top:12px;padding:12px 16px;background:var(--amber-lt);border:1.5px solid var(--amber);border-radius:8px;font-size:13.5px;text-align:center">
+      <span style="color:var(--dark)">We will reveal your outcome from this lottery at the end of the survey.</span>
+    </div>
+    ${navRow("submitLA()")}
+  </div>`;
+}
+
+function laChange(row,choice){
+  if(!state.laManual) state.laManual={};
+  state.laManual[row]=choice;
+  // Find the earliest row the participant manually rejected
+  let firstR=-1;
+  for(let i=0;i<6;i++){
+    if(state.laManual[i]==="reject"){firstR=i;break;}
+  }
+  // Auto-record Reject for all rows after the first rejection; unlock the rest
+  for(let i=0;i<6;i++){
+    const aEl=document.getElementById(`la_${i}_accept`);
+    const rEl=document.getElementById(`la_${i}_reject`);
+    if(!aEl) continue;
+    if(firstR>=0 && i>firstR){
+      // Row is after first reject — automatically recorded as Reject
+      if(rEl){rEl.checked=true;rEl.disabled=false;rEl.closest("label").style.opacity="1";}
+      aEl.checked=false;
+      aEl.disabled=true;
+      aEl.closest("label").style.opacity="0.4";
+    } else {
+      // Row is before or at firstR — fully unlocked; restore manual choice if any
+      aEl.disabled=false;
+      aEl.closest("label").style.opacity="1";
+      if(rEl){rEl.disabled=false;rEl.closest("label").style.opacity="1";}
+      const m=state.laManual[i];
+      aEl.checked=m==="accept";
+      if(rEl) rEl.checked=m==="reject";
+    }
+  }
+  state.laSwitched = firstR>=0;
+  checkLAComplete();
+}
+
+function checkLAComplete(){
+  let allDone=true;
+  for(let i=0;i<6;i++){if(!getChecked(`la_${i}`)){allDone=false;break;}}
+  if(allDone){
+    if(!state.laPayRow) state.laPayRow=Math.floor(Math.random()*6)+1; // drawn silently; revealed at end of survey
+    const box=document.getElementById("la-pay-row-box");
+    if(box) box.style.display="block";
+  }
+}
+
+// ── PRE-INVESTMENT INSTRUCTIONS BLOCK ────────────────────────────────────
+function renderPreInvestment(){
+  progress(58);
+  const isLuck=state.condition==="Luck"||state.condition==="LuckReflect";
+  const reminderHtml=state.condition!=="Control"?`
+    <div class="warn-box" style="margin-top:16px;font-size:14px;line-height:1.75">
+      As a reminder, here is the information we shared earlier about your paired participant.<br><br>
+      Participant <strong>${peerId()}</strong> completed a similar investment task in an earlier session and earned a total of <strong>around 56,000 EU</strong>.<br><br>
+      ${isLuck ? "We believe their high earnings were mainly due to luck. We found they spent relatively little time thinking before investing, and their investment choices happened to be matched with favorable market conditions." : "We believe their high earnings were mainly due to skill. We found they spent relatively more time thinking before investing, and their investment choices reflected a strategy that performed well."}<br><br>
+      As noted earlier, this information is provided for reference only. Their earnings do not affect your own investment opportunities, returns, or earnings in any way.
+    </div>`:"";
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Investment Task</span><h2 class="card-title">Before You Begin</h2></div>
+    <div class="info-box" style="font-size:14px;line-height:1.8">
+      You are now about to begin the main investment task.<br><br>
+      The task consists of <strong>three investment rounds</strong>.<strong> AFTER ALL ROUNDS ARE COMPLETED, ONE ROUND WILL BE RANDOMLY SELECTED FOR PAYMENT.</strong> Your earnings will depend on the investments you chose and the returns realized in the selected round.
+    </div>
+    ${reminderHtml}
+    <p style="font-size:14.5px;font-weight:600;color:var(--navy);margin-top:18px">You may now proceed to the investment task.</p>
+    ${navRow("goSection('block6')","Go to Investment Round 1 →")}
+  </div>`;
+}
+
+
+// ── INVESTMENT ROUNDS ─────────────────────────────────────────────────────
+
+
+function renderRound(num){
+  const progs={1:60,2:67,3:74};
+  progress(progs[num]);
+  const nexts={1:"block7",2:"block8",3:"block8s"};
+  const roundAssets = num===1?ASSETS_R1:num===2?ASSETS_R2:ASSETS_R3;
+  const assetRows=Object.entries(roundAssets).map(([k,a])=>`
+    <tr>
+      <td><strong>${a.label}</strong></td>
+      <td>${a.desc}</td>
+      <td style="text-align:center">${a.ret}</td>
+      <td style="text-align:center">${a.sd===0?"None":"±"+a.sd+"%"}</td>
+      <td style="text-align:center">${a.range}</td>
+      <td style="text-align:center;padding:6px 8px">
+        <input type="number" id="R${num}_${k}" min="0" max="${ENDOWMENT}" step="500" placeholder="0"
+          style="width:90px;padding:6px 8px;font-size:13px;border:1.5px solid var(--light);border-radius:6px;text-align:right"
+          oninput="this.value=Math.max(0,parseInt(this.value)||0);updateAllocTotal('R${num}')">
+      </td>
+    </tr>`).join("");
+  const nextLabel = num<3 ? "Go to next round →" : "Continue →";
+  // Reminder box removed from investment rounds per protocol revision
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Round ${num} of 3</span><h2 class="card-title">Investment Decision</h2></div>
+    <div class="info-box">Allocate your <strong>40,000 EU</strong> across the five assets using the column on the right. Your allocations must sum to exactly 40,000 EU.
+    Remember, you will play 3 investment rounds, out of which one will be randomly selected for payment.
+    </div>
+    <div class="sec-label">Asset Menu & Allocation</div>
+    <div style="overflow-x:auto">
+      <table class="inst-table">
+        <thead><tr><th>Asset</th><th>Description</th><th>Expected Return</th><th>Risk Range</th><th>Return Range</th><th>Amount to Allocate (EU)</th></tr></thead>
+        <tbody>${assetRows}</tbody>
+      </table>
+    </div>
+    <div class="alloc-total" style="margin-top:10px" id="total_R${num}">Total: <span class="alloc-total-val alloc-err">0 / 40,000 EU</span></div>
+    <div id="err-round${num}" class="error-box">Allocations must sum to exactly 40,000 EU.</div>
+    ${navRow(`submitRound(${num},'${nexts[num]}')`,nextLabel)}
+  </div>`;
+}
+
+// ── SELF ASSESSMENT ───────────────────────────────────────────────────────
+function renderSelfAssess(){
+  progress(80);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Self-Assessment</span><h2 class="card-title">Your Approach</h2></div>
+    <div class="q-block">
+      <div class="q-label">Which statement best describes your overall approach across the three investment rounds? We'd appreciate an honest response here.</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'self_attr')"><input type="radio" name="self_attr" value="1"><span>A desire to match or exceed a specific reference point</span></label>
+        <label class="opt" onclick="selectOpt(this,'self_attr')"><input type="radio" name="self_attr" value="2"><span>My own general comfort with financial risk</span></label>
+        <label class="opt" onclick="selectOpt(this,'self_attr')"><input type="radio" name="self_attr" value="3"><span>A specific investment strategy or objective I had in mind</span></label>
+        <label class="opt" onclick="selectOpt(this,'self_attr')"><input type="radio" name="self_attr" value="4"><span>Mostly random or intuitive choices, without a clear reason</span></label>
+      </div>
+    </div>
+    <div id="err-self" class="error-box">Please make a selection.</div>
+    ${navRow("submitSelfAssess()")}
+  </div>`;
+}
+
+// ── BLOCK 9 — BONUS QUESTION (₹50) ────────────────────────────────────────
+function renderBlock9(){
+  progress(84);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 9</span><h2 class="card-title">Bonus Question (₹50)</h2></div>
+    <div class="info-box">This question carries a bonus of <strong>₹50</strong> if your answer is correct.</div>
+    <div class="q-block">
+      <div class="q-label">One of the three investment rounds will be selected at random for payment. Based on the investment decisions you made, do you think the value of your investment in the selected round will be at least <strong>56,000 EU</strong>?</div>
+      <div class="options">
+        <label class="opt" onclick="selectOpt(this,'belief_yn')"><input type="radio" name="belief_yn" value="yes"><span>Yes, I think the value of my investment will be at least 56,000 EU.</span></label>
+        <label class="opt" onclick="selectOpt(this,'belief_yn')"><input type="radio" name="belief_yn" value="no"><span>No, I do not think the value of my investment will be at least 56,000 EU.</span></label>
+      </div>
+    </div>
+    <div id="err-b9" class="error-box">Please select an answer.</div>
+    ${navRow("submitBlock9()")}
+  </div>`;
+}
+
+// ── BLOCK 9b — RELATIVE RANK (unincentivized) ─────────────────────────────
+function renderBlock9b(){
+  progress(87);
+  const opts=["Top 10%","11–25%","26–50%","Bottom 50%"];
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Block 9</span><h2 class="card-title">One More Question</h2></div>
+    <div class="q-block">
+      <div class="q-label">Compared with other participants in this study, where do you think your earnings will rank?</div>
+      <div class="options">
+        ${opts.map((o,i)=>`<label class="opt" onclick="selectOpt(this,'rank_belief')"><input type="radio" name="rank_belief" value="${i+1}"><span>${o}</span></label>`).join("")}
+      </div>
+    </div>
+    <div id="err-b9b" class="error-box">Please select an answer.</div>
+    ${navRow("submitBlock9b()")}
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN A — Chance of reaching 56,000 EU (incentivised slider, bonus ₹30)
+// ═══════════════════════════════════════════════════════════════════════════
+function renderScreenA(){
+  progress(89);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Belief A</span><h2 class="card-title">Your Investment Outlook</h2></div>
+    <div class="q-block">
+      <div class="q-label" style="margin-bottom:16px">One of the three investment rounds will be selected at random for payment. On a scale from 0 to 100, what is the chance that the value of your investment in the selected round will be at least <strong>56,000 EU</strong>?</div>
+      <div style="margin:20px 0 8px;display:flex;justify-content:space-between;font-size:12px;color:var(--slate)">
+        <span>0 — It will certainly not happen</span>
+        <span>100 — It will certainly happen</span>
+      </div>
+      <div style="position:relative">
+        <input type="range" id="slider_a" min="0" max="100" step="1"
+          style="width:100%;accent-color:var(--amber);height:6px;cursor:pointer;opacity:0"
+          oninput="onSliderA(this.value)" onclick="onSliderA(this.value)">
+        <div id="slider_a_track" style="position:absolute;top:0;left:0;right:0;pointer-events:none;height:24px;display:flex;align-items:center">
+          <div style="width:100%;height:6px;background:var(--light);border-radius:3px;position:relative">
+            <div id="slider_a_fill" style="height:6px;background:var(--amber);border-radius:3px;width:0%;transition:width 0.1s"></div>
+            <div id="slider_a_thumb" style="display:none;position:absolute;top:50%;width:18px;height:18px;background:var(--amber);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 2px 6px rgba(0,0,0,0.2)"></div>
+          </div>
+        </div>
+      </div>
+      <div id="slider_a_val" style="text-align:center;margin-top:14px;font-size:28px;font-weight:700;font-family:var(--font-h);color:var(--navy);min-height:40px"></div>
+    </div>
+    <div class="info-box" style="margin-top:8px;font-size:13px">
+      <strong>Bonus of ₹30 for this answer.</strong> The bonus is determined by a rule that rewards accurate answers: the closer your answer is to what actually happens in the selected round, the higher your chance of earning the bonus. You maximise your chance of earning the bonus by reporting your honest best estimate.
+    </div>
+    <div id="err-sa" class="error-box">Please move the slider to record your answer.</div>
+    <div style="margin-top:24px;padding-top:16px;border-top:1.5px solid var(--light);display:flex;justify-content:flex-end">
+      <button class="btn btn-primary" id="btn_sa" onclick="submitScreenA()" disabled>Continue →</button>
+    </div>
+  </div>`;
+}
+
+function onSliderA(val){
+  const v=parseInt(val);
+  const el=document.getElementById("slider_a");
+  if(el) el.style.opacity="1";
+  const fill=document.getElementById("slider_a_fill");
+  const thumb=document.getElementById("slider_a_thumb");
+  const disp=document.getElementById("slider_a_val");
+  const pct=v+"%";
+  if(fill){fill.style.width=pct;}
+  if(thumb){thumb.style.display="block";thumb.style.left=pct;}
+  if(disp) disp.textContent=v;
+  state.chanceUp=v;
+  const btn=document.getElementById("btn_sa");
+  if(btn) btn.disabled=false;
+}
+
+function submitScreenA(){
+  if(state.chanceUp===null||state.chanceUp===undefined){
+    document.getElementById("err-sa").style.display="block"; return;
+  }
+  document.getElementById("err-sa").style.display="none";
+  saveBlock("B9_ScreenA",{chance_up:state.chanceUp});
+  goSection("screenB");
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN B — Chance of a loss (incentivised slider, bonus ₹20)
+// ═══════════════════════════════════════════════════════════════════════════
+function renderScreenB(){
+  progress(91);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Belief B</span><h2 class="card-title">Your Investment Outlook</h2></div>
+    <div class="q-block">
+      <div class="q-label" style="margin-bottom:16px">On a scale from 0 to 100, what is the chance that the value of your investment in the selected round will be <strong>less than 40,000 EU</strong>, that is, that you will lose part of your endowment?</div>
+      <div style="margin:20px 0 8px;display:flex;justify-content:space-between;font-size:12px;color:var(--slate)">
+        <span>0 — It will certainly not happen</span>
+        <span>100 — It will certainly happen</span>
+      </div>
+      <div style="position:relative">
+        <input type="range" id="slider_b" min="0" max="100" step="1"
+          style="width:100%;accent-color:var(--amber);height:6px;cursor:pointer;opacity:0"
+          oninput="onSliderB(this.value)" onclick="onSliderB(this.value)">
+        <div id="slider_b_track" style="position:absolute;top:0;left:0;right:0;pointer-events:none;height:24px;display:flex;align-items:center">
+          <div style="width:100%;height:6px;background:var(--light);border-radius:3px;position:relative">
+            <div id="slider_b_fill" style="height:6px;background:var(--amber);border-radius:3px;width:0%;transition:width 0.1s"></div>
+            <div id="slider_b_thumb" style="display:none;position:absolute;top:50%;width:18px;height:18px;background:var(--amber);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 2px 6px rgba(0,0,0,0.2)"></div>
+          </div>
+        </div>
+      </div>
+      <div id="slider_b_val" style="text-align:center;margin-top:14px;font-size:28px;font-weight:700;font-family:var(--font-h);color:var(--navy);min-height:40px"></div>
+    </div>
+    <div class="info-box" style="margin-top:8px;font-size:13px">
+      <strong>Bonus of ₹20 for this answer.</strong> As before, the closer your answer is to what actually happens in the selected round, the higher your chance of earning the bonus. You maximise your chance of earning the bonus by reporting your honest best estimate.
+    </div>
+    <div id="err-sb" class="error-box">Please move the slider to record your answer.</div>
+    <div style="margin-top:24px;padding-top:16px;border-top:1.5px solid var(--light);display:flex;justify-content:flex-end">
+      <button class="btn btn-primary" id="btn_sb" onclick="submitScreenB()" disabled>Continue →</button>
+    </div>
+  </div>`;
+}
+
+function onSliderB(val){
+  const v=parseInt(val);
+  const el=document.getElementById("slider_b");
+  if(el) el.style.opacity="1";
+  const fill=document.getElementById("slider_b_fill");
+  const thumb=document.getElementById("slider_b_thumb");
+  const disp=document.getElementById("slider_b_val");
+  const pct=v+"%";
+  if(fill){fill.style.width=pct;}
+  if(thumb){thumb.style.display="block";thumb.style.left=pct;}
+  if(disp) disp.textContent=v;
+  state.chanceDown=v;
+  const btn=document.getElementById("btn_sb");
+  if(btn) btn.disabled=false;
+}
+
+function submitScreenB(){
+  if(state.chanceDown===null||state.chanceDown===undefined){
+    document.getElementById("err-sb").style.display="block"; return;
+  }
+  document.getElementById("err-sb").style.display="none";
+  saveBlock("B9_ScreenB",{chance_down:state.chanceDown});
+  goSection("screenC");
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN C — Ticket A choice list (pays if investment ≥ 56,000 EU)
+// ═══════════════════════════════════════════════════════════════════════════
+const TKT_PRICES=[5,10,20,40,60,80];
+
+function renderTicketTable(tktKey, rows){
+  return `<table class="task-table" style="margin-top:12px">
+    <thead><tr>
+      <th style="width:160px">Price of ${tktKey==="tktA"?"Ticket A":"Ticket B"}</th>
+      <th>Buy</th>
+      <th>Do not buy</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function tktRows(tktKey){
+  return TKT_PRICES.map((price,i)=>`
+    <tr id="${tktKey}_row_${price}">
+      <td class="row-lbl">₹${price}</td>
+      <td><label style="cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center">
+        <input type="radio" name="${tktKey}_${price}" id="${tktKey}_${price}_buy" value="buy"
+          onchange="tktChange('${tktKey}',${price},'buy')"> Buy
+      </label></td>
+      <td><label style="cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center">
+        <input type="radio" name="${tktKey}_${price}" id="${tktKey}_${price}_nobuy" value="nobuy"
+          onchange="tktChange('${tktKey}',${price},'nobuy')"> Do not buy
+      </label></td>
+    </tr>`).join("");
+}
+
+function tktChange(tktKey, price, choice){
+  if(!state[tktKey]) state[tktKey]={};
+  state[tktKey][price]=choice;
+  // Propagate: if Buy at price → set all lower prices to Buy
+  //            if Do not buy at price → set all higher prices to Do not buy
+  TKT_PRICES.forEach(p=>{
+    const buyEl  = document.getElementById(`${tktKey}_${p}_buy`);
+    const nobuyEl= document.getElementById(`${tktKey}_${p}_nobuy`);
+    if(!buyEl) return;
+    if(choice==="buy" && p<price){
+      buyEl.checked=true; buyEl.disabled=false;
+      nobuyEl.disabled=false;
+      if(!state[tktKey][p]||state[tktKey][p]==="nobuy") state[tktKey][p]="buy";
+    }
+    if(choice==="nobuy" && p>price){
+      nobuyEl.checked=true; buyEl.disabled=true;
+      buyEl.closest("label").style.opacity="0.4";
+      state[tktKey][p]="nobuy";
+    }
+    if(choice==="buy" && p<=price){
+      buyEl.disabled=false; nobuyEl.disabled=false;
+      buyEl.closest("label").style.opacity="1";
+    }
+  });
+}
+
+const TKT_FOOTER=`<div class="info-box" style="margin-top:14px;font-size:13px">
+  <em>Either this list or the other ticket list (on the next page) will be selected at random, and then one price in that list will be selected at random. If you chose Buy at the selected price, that price is paid from these ₹80 and you receive the ticket's payout. If you chose Do not buy, the full ₹80 stays in your earnings.</em>
+</div>`;
+
+function renderScreenC(){
+  progress(93);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Ticket A</span><h2 class="card-title">Ticket Choice — Screen C</h2></div>
+    <div class="warn-box" style="margin-bottom:14px">
+      <strong>₹80 has been added to your earnings for this part.</strong> You may use some of it to buy a ticket in the next two screens. Any part of these ₹80 that you do not use stays in your earnings. Your other earnings are not affected by this part.
+    </div>
+    <div class="q-label" style="margin-bottom:10px">
+      <strong>Ticket A</strong> pays ₹100 if the value of your investment in the selected round is at least <strong>56,000 EU</strong>, and nothing otherwise. For each price below, choose whether you would buy Ticket A at that price.
+    </div>
+    ${renderTicketTable("tktA", tktRows("tktA"))}
+    ${TKT_FOOTER}
+    <div id="err-sc" class="error-box">Please make a choice for every row.</div>
+    ${navRow("submitScreenC()")}
+  </div>`;
+}
+
+function submitScreenC(){
+  // Validate all 6 rows answered
+  for(const price of TKT_PRICES){
+    if(!getChecked(`tktA_${price}`)){
+      document.getElementById("err-sc").style.display="block"; return;
+    }
+  }
+  document.getElementById("err-sc").style.display="none";
+  const d={};
+  TKT_PRICES.forEach(p=>{ d[`tktA_${p}`]=getChecked(`tktA_${p}`)==="buy"?1:0; });
+  state.tktA=d;
+  saveBlock("B9_ScreenC",d);
+  goSection("screenD");
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN D — Ticket B choice list (pays ₹100 with 10% chance, independent)
+// ═══════════════════════════════════════════════════════════════════════════
+function renderScreenD(){
+  progress(95);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Ticket B</span><h2 class="card-title">Ticket Choice — Screen D</h2></div>
+    <div class="q-label" style="margin-bottom:10px">
+      <strong>Ticket B</strong> pays ₹100 with a <strong>10% chance</strong> and nothing otherwise. Whether it pays is decided by the computer at random, independently of your investment. For each price below, choose whether you would buy Ticket B at that price.
+    </div>
+    ${renderTicketTable("tktB", tktRows("tktB"))}
+    ${TKT_FOOTER}
+    <div id="err-sd" class="error-box">Please make a choice for every row.</div>
+    ${navRow("submitScreenD()")}
+  </div>`;
+}
+
+function submitScreenD(){
+  for(const price of TKT_PRICES){
+    if(!getChecked(`tktB_${price}`)){
+      document.getElementById("err-sd").style.display="block"; return;
+    }
+  }
+  document.getElementById("err-sd").style.display="none";
+  const d={};
+  TKT_PRICES.forEach(p=>{ d[`tktB_${p}`]=getChecked(`tktB_${p}`)==="buy"?1:0; });
+  state.tktB=d;
+  saveBlock("B9_ScreenD",d);
+  goSection("block11");
+}
+
+// ── TICKET PAYOUT COMPUTATION (called inside renderBlock11) ───────────────
+function computeTicketPayout(payEU){
+  // Randomly select Ticket A or B, then randomly select a price
+  const useA = Math.random()<0.5;
+  const tktKey = useA?"tktA":"tktB";
+  const priceIdx = Math.floor(Math.random()*TKT_PRICES.length);
+  const selectedPrice = TKT_PRICES[priceIdx];
+  const tktChoices = state[tktKey]||{};
+  const bought = (tktChoices[selectedPrice]===1||tktChoices[selectedPrice]==="buy");
+
+  let tktPays = 0;
+  let tktPayLabel = "";
+  if(bought){
+    if(useA){
+      tktPays = payEU>=56000 ? 100 : 0;
+      tktPayLabel = payEU>=56000 ? "The ticket paid ₹100." : "The ticket paid ₹0 (investment below 56,000 EU).";
+    } else {
+      const win10 = Math.random()<0.10;
+      tktPays = win10 ? 100 : 0;
+      tktPayLabel = win10 ? "The ticket paid ₹100 (10% draw was successful)." : "The ticket paid ₹0 (10% draw was unsuccessful).";
+    }
+  }
+  // Net earnings: ₹80 base − price paid (if bought) + ticket payout
+  const tktNet = bought ? (80 - selectedPrice + tktPays) : 80;
+
+  state.tktResult={
+    tktSelected: useA?"A":"B",
+    priceSelected: selectedPrice,
+    bought,
+    tktPays,
+    tktPayLabel,
+    tktNet,
+  };
+  return state.tktResult;
+}
+
+// ── BRIER SCORE BONUS COMPUTATION ─────────────────────────────────────────
+// Uses a simplified quadratic scoring rule. Outcome is 0 or 1.
+// Bonus = max_bonus × (1 − (p/100 − outcome)²)
+function computeBeliefBonus(reported, outcome, maxBonus){
+  if(reported===null||reported===undefined) return 0;
+  const p=reported/100;
+  const raw=maxBonus*(1-Math.pow(p-outcome,2));
+  return Math.max(0,Math.round(raw));
+}
+
+// ── BLOCK 11 — RESULTS ────────────────────────────────────────────────────
+function renderBlock11(){
+  progress(100);
+  randomPayRound();
+  const rounds=[1,2,3].map(n=>{
+    const alloc=state.allocs[`R${n}`];
+    const roundAssets=n===1?ASSETS_R1:n===2?ASSETS_R2:ASSETS_R3;
+    const{portfolio,breakdown}=calcReturn(alloc,roundAssets);
+    return{n,alloc,portfolio,breakdown,roundAssets};
+  });
+  state.returns=rounds;
+  const payEU=Math.round(ENDOWMENT*(1+parseFloat(rounds[state.payRound-1].portfolio.toFixed(1))/100));
+  const payINR=payEU*EU_TO_INR;
+  // Bonus question: correct if their yes/no prediction matches whether the
+  // return in the randomly selected round is at least 20,000 EU
+  const belief=state.answers.belief_yn;
+  state.bonusCorrect=belief?((belief==="yes")===(payEU>=56000)):false;
+  state.bonus=state.bonusCorrect?50:0;
+  const hl=state.hlResult;
+  const la=state.laResult;
+  const l1IsHL=state.lotteryOrder==="HL_first";
+
+  function lotteryCard(res,label,isHL){
+    if(!res) return `<div class="return-card"><div class="return-card-header"><span>${label}</span></div><div class="return-body"><p style="color:var(--slate);font-size:13px">No data.</p></div></div>`;
+    let rows="";
+    if(isHL){
+      rows=`<div class="return-summary" style="margin-top:6px"><span>Row randomly selected</span><span style="font-weight:600">Row ${res.row} — Option ${res.choice}</span></div>
+        <div class="return-summary" style="margin-top:6px"><span>Outcome drawn</span><span style="font-weight:600">${res.high?"High payoff":"Low payoff"}</span></div>
+        <div class="return-summary" style="margin-top:6px;background:var(--amber-lt);border-color:var(--amber)"><span style="font-weight:600">Your payout</span><span style="font-weight:700;color:var(--green);font-size:15px">${fmtINR(res.payout)}</span></div>`;
+    } else {
+      const col=res.payout>0?"var(--green)":res.payout<0?"var(--red)":"var(--slate)";
+      const ot=res.choice==="reject"?"Rejected — no gamble played":res.heads?"Heads — win ₹200":"Tails — lose ₹"+[60,90,120,150,175,200][res.row-1];
+      rows=`<div class="return-summary" style="margin-top:6px"><span>Row randomly selected</span><span style="font-weight:600">Row ${res.row}</span></div>
+        <div class="return-summary" style="margin-top:6px"><span>Outcome drawn</span><span style="font-weight:600">${ot}</span></div>
+        <div class="return-summary" style="margin-top:6px;background:var(--amber-lt);border-color:var(--amber)"><span style="font-weight:600">Your payout</span><span style="font-weight:700;font-size:15px;color:${col}">${res.payout>=0?fmtINR(res.payout):"-"+fmtINR(-res.payout)}</span></div>`;
+    }
+    return `<div class="return-card"><div class="return-card-header"><span>${label}</span></div><div class="return-body">${rows}</div></div>`;
+  }
+
+  const roundCards=rounds.map(r=>{
+    const retClass=r.portfolio>0?"ret-pos":r.portfolio<0?"ret-neg":"ret-zero";
+    const assetBoxes=Object.entries(r.roundAssets||ASSETS).map(([k,a])=>{
+      const amt=r.alloc[k]||0;
+      const draw=r.breakdown[k]?.draw??0;
+      const cls=draw>0?"ret-pos":draw<0?"ret-neg":"ret-zero";
+      return `<div class="return-asset">
+        <div class="return-asset-name">${a.label}</div>
+        <div class="return-asset-alloc">${(amt/1000).toFixed(0)}k</div>
+        ${amt>0?`<div class="return-asset-ret ${cls}">${fmt(draw)}</div>`:"<div style='font-size:11px;color:var(--mid)'>—</div>"}
+      </div>`;
+    }).join("");
+    const endEU=Math.round(ENDOWMENT*(1+parseFloat(r.portfolio.toFixed(1))/100));
+    return `<div class="return-card">
+      <div class="return-card-header"><span>Investment Round ${r.n}</span></div>
+      <div class="return-body">
+        <div class="return-assets">${assetBoxes}</div>
+        <div class="return-summary"><span>Portfolio return</span><span class="return-total ${retClass}">${fmt(r.portfolio)}</span></div>
+        <div class="return-summary" style="margin-top:6px"><span>Final amount</span><span style="font-weight:600">${endEU.toLocaleString("en-IN")} units</span></div>
+      </div>
+    </div>`;
+  }).join("");
+
+  // ── Compute ticket payout ────────────────────────────────────────────────
+  const tkt=computeTicketPayout(payEU);
+
+  // ── Compute belief bonuses (quadratic scoring rule) ───────────────────────
+  const outcomeUp   = payEU>=56000 ? 1 : 0;  // did investment reach 56k?
+  const outcomeDown = payEU<40000  ? 1 : 0;  // did investment fall below 40k?
+  const bonusUp   = computeBeliefBonus(state.chanceUp,   outcomeUp,   30);
+  const bonusDown = computeBeliefBonus(state.chanceDown, outcomeDown, 20);
+  state.bonusUp   = bonusUp;
+  state.bonusDown = bonusDown;
+
+  saveBlock("B11_Returns",{
+    pay_round:state.payRound,
+    r1:rounds[0].portfolio,r2:rounds[1].portfolio,r3:rounds[2].portfolio,
+    pay_eu:payEU,pay_inr:payINR,
+    hl_payout:hl?.payout||0,la_payout:la?.payout||0,
+    belief_yn:belief||null,belief_correct:state.bonusCorrect,bonus_inr:state.bonus,
+    chance_up:state.chanceUp??null,
+    chance_down:state.chanceDown??null,
+    bonus_up:bonusUp, bonus_down:bonusDown,
+    tkt_selected:tkt.tktSelected,
+    tkt_price:tkt.priceSelected,
+    tkt_bought:tkt.bought?1:0,
+    tkt_pays:tkt.tktPays,
+    tkt_net:tkt.tktNet,
+  });
+
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Your Results</span><h2 class="card-title">All Task Outcomes</h2></div>
+    <div class="info-box" style="margin-bottom:14px">Returns across all three investment rounds are determined by independent random draws from the return ranges shown in the asset table. Lottery rows and outcomes were also randomly drawn.</div>
+    <div class="sec-label">Lottery 1 — ${l1IsHL?"Choice Task 1":"Choice Task 2"}</div>
+    ${lotteryCard(l1IsHL?hl:la,"Lottery 1",l1IsHL)}
+    <div class="sec-label" style="margin-top:16px">Lottery 2 — ${l1IsHL?"Choice Task 2":"Choice Task 1"}</div>
+    ${lotteryCard(l1IsHL?la:hl,"Lottery 2",!l1IsHL)}
+    <div class="sec-label" style="margin-top:16px">Investment Rounds</div>
+    ${roundCards}
+    <div style="margin-top:20px;padding:16px 20px;background:var(--amber-lt);border:1.5px solid var(--amber);border-radius:10px;text-align:center">
+      <p style="font-size:13.5px;color:var(--dark);margin-bottom:12px">All task results are shown above. Click below to reveal which investment round was <strong>randomly</strong> selected for your payment.</p>
+      <button class="btn btn-primary" onclick="revealAndFinish()" id="reveal-btn">Reveal My Payment Round →</button>
+    </div>
+    <div id="final-section" style="display:none;margin-top:20px"></div>
+  </div>`;
+}
+
+function revealAndFinish(){
+  document.getElementById("reveal-btn").style.display="none";
+  const hl=state.hlResult;
+  const la=state.laResult;
+  const l1IsHL=state.lotteryOrder==="HL_first";
+  const l1Pay=(l1IsHL?hl:la)?.payout||0;
+  const l2Pay=(l1IsHL?la:hl)?.payout||0;
+  const payEU=Math.round(ENDOWMENT*(1+parseFloat(state.returns[state.payRound-1].portfolio.toFixed(1))/100));
+  const payINR=payEU*EU_TO_INR;
+  const bonus=state.bonus||0;
+  const bonusUp=state.bonusUp||0;
+  const bonusDown=state.bonusDown||0;
+  const tkt=state.tktResult||{tktSelected:"—",priceSelected:"—",bought:false,tktPays:0,tktNet:80,tktPayLabel:""};
+  const total=Math.min(1500,Math.round((Math.max(100,100+payINR+l1Pay+l2Pay+bonus+bonusUp+bonusDown+tkt.tktNet))/50)*50);
+  const l1Col=l1Pay>=0?"color:var(--amber)":"color:var(--red)";
+  const l2Col=l2Pay>=0?"color:var(--amber)":"color:var(--red)";
+  const bCol=bonus>0?"color:var(--amber)":"color:rgba(255,255,255,0.6)";
+  document.getElementById("final-section").innerHTML=`
+    <div style="padding:22px;background:var(--navy);border-radius:10px">
+      <h3 style="font-family:var(--font-h);color:var(--white);font-size:18px;margin-bottom:6px;text-align:center">Thank You!</h3>
+      <p style="color:rgba(255,255,255,0.6);font-size:13px;text-align:center;margin-bottom:16px">★ Investment Round <strong style="color:var(--amber)">${state.payRound}</strong> was randomly selected for your payment.</p>
+      <table style="width:100%;font-size:13px;border-collapse:collapse">
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Fixed participation fee</td><td style="padding:8px 4px;text-align:right;color:var(--white);font-weight:600">₹100</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Investment Round ${state.payRound} (${payEU.toLocaleString("en-IN")} EU × 0.007)</td><td style="padding:8px 4px;text-align:right;color:var(--amber);font-weight:600">${fmtINR(payINR)}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Lottery 1 payout (Row ${(l1IsHL?hl:la)?.row||"—"})</td><td style="padding:8px 4px;text-align:right;font-weight:600;${l1Col}">${l1Pay>=0?fmtINR(l1Pay):"-"+fmtINR(-l1Pay)}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Lottery 2 payout (Row ${(l1IsHL?la:hl)?.row||"—"})</td><td style="padding:8px 4px;text-align:right;font-weight:600;${l2Col}">${l2Pay>=0?fmtINR(l2Pay):"-"+fmtINR(-l2Pay)}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Bonus question (${state.bonusCorrect?"answered correctly":"answered incorrectly"})</td><td style="padding:8px 4px;text-align:right;font-weight:600;${bCol}">${fmtINR(bonus)}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Chance of reaching 56,000 EU (bonus)</td><td style="padding:8px 4px;text-align:right;color:var(--amber);font-weight:600">${fmtINR(bonusUp)}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Chance of a loss (bonus)</td><td style="padding:8px 4px;text-align:right;color:var(--amber);font-weight:600">${fmtINR(bonusDown)}</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.12)"><td style="padding:8px 4px;color:rgba(255,255,255,0.6)">Ticket: Ticket ${tkt.tktSelected} was selected at a price of ₹${tkt.priceSelected}. You chose to ${tkt.bought?"buy":"not buy"} at this price. ${tkt.bought?tkt.tktPayLabel:""} Earnings from this part</td><td style="padding:8px 4px;text-align:right;font-weight:600;color:var(--amber)">${fmtINR(tkt.tktNet)}</td></tr>
+        <tr style="background:rgba(255,255,255,0.06)"><td style="padding:10px 4px;color:var(--white);font-weight:700;font-size:14px">Total payment</td><td style="padding:10px 4px;text-align:right;color:var(--amber);font-weight:700;font-size:16px">${fmtINR(total)}</td></tr>
+      </table>
+      <p style="color:rgba(255,255,255,0.5);font-size:12px;text-align:center;margin-top:14px"> Show this screen to the research instructor in the room to collect your payment.<br>Questions: <strong style="color:var(--amber)">puneet.arora@mdi.ac.in</strong></p>
+      <p style="color:rgba(255,255,255,0.25);font-size:11px;text-align:center;margin-top:8px">ID: ${state.pid}  MDI Gurgaon </p>
+    </div>`;
+  document.getElementById("final-section").style.display="block";
+  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+
+function randomPayRound(){ state.payRound=Math.floor(Math.random()*3)+1; }
+function randomCondition(){
+  const arms=["Control","Luck","Skill","LuckReflect"];
+  const idx=Math.floor(Math.random()*4);
+  state.condition=arms[idx]; state.conditionNum=idx+1;
+}
+function randomLotteryOrder(){
+  state.lotteryOrder=Math.random()<0.5?"HL_first":"LA_first";
+}
+
+function startStudy(){
+  const nameEl   = document.getElementById("cover_name");
+  const emailEl  = document.getElementById("cover_email");
+  const nameErr  = document.getElementById("err-cover-name");
+  const errEl    = document.getElementById("err-cover-email");
+  const fullName = nameEl ? nameEl.value.trim() : "";
+  const email    = emailEl ? emailEl.value.trim() : "";
+
+  // Name is required
+  if(!fullName || fullName.length < 2){
+    if(nameErr) nameErr.style.display = "block";
+    if(nameEl) nameEl.focus();
+    return;
+  }
+  if(nameErr) nameErr.style.display = "none";
+
+  // Basic email validation
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    if(errEl) errEl.style.display = "block";
+    if(emailEl) emailEl.focus();
+    return;
+  }
+  if(errEl) errEl.style.display = "none";
+
+  state.fullName = fullName;
+  checkEmailAndStart(email);
+}
+
+function startSurvey(assignedCondition, assignedConditionNum){
+  state.pid = uid();
+  const arms=["Control","Luck","Skill","LuckReflect"];
+  if(assignedCondition && arms.indexOf(assignedCondition) > -1){
+    state.condition    = assignedCondition;
+    state.conditionNum = Number(assignedConditionNum) || (arms.indexOf(assignedCondition)+1);
+  } else {
+    // Fallback only — used if the server is unreachable
+    randomCondition();
+  }
+  randomLotteryOrder();
+  console.log("Assigned:",state.condition,"| Lotteries:",state.lotteryOrder,"| PID:",state.pid,"| Email:",state.email);
+  document.getElementById("app").innerHTML=`
+    <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><div class="progress-label">0% complete</div></div>
+    <div class="shell" id="sections-wrap"></div>`;
+  goSection("participantInfo");
+}
+
+function checkConsentComplete(){
+  // just a live hook; validation happens on submit
+}
+
+function submitConsent(){
+  const v=getChecked("consent_decision");
+  if(!v){document.getElementById("err-consent").style.display="block";return;}
+  if(v==="noconsent"){
+    document.getElementById("sections-wrap").innerHTML=`<div class="end-screen"><div class="end-inner"><h2 style="font-family:var(--font-h);color:var(--navy);margin-bottom:12px">Thank You</h2><p style="color:var(--slate)">You have chosen not to participate. You may close this window.</p></div></div>`;
+    return;
+  }
+  goSection("block1");
+}
+
+function submitBlock1(){
+  const req=["b1_age","b1_state"];
+  const radios=["b1_gender","b1_income","b1_course","b1_year","b1_invest"];
+  let ok=true;
+  req.forEach(id=>{const el=document.getElementById(id);if(!el||!el.value.trim())ok=false;});
+  radios.forEach(n=>{if(!getChecked(n))ok=false;});
+  if(!ok){document.getElementById("err-b1").style.display="block";return;}
+  const d={};
+  req.forEach(id=>d[id]=document.getElementById(id).value);
+  radios.forEach(n=>d[n]=getChecked(n));
+  const cat=document.getElementById("b1_cat");
+  if(cat) d.b1_cat=cat.value;
+  const yearOther=document.getElementById("b1_year_other");
+  if(getChecked("b1_year")==="other" && yearOther) d.b1_year_other=yearOther.value;
+  d.b1_name  = state.fullName || "";
+  d.b1_email = state.email || "";
+  state.answers.block1=d;
+  saveBlock("B1_Demographics",d);
+  goSection("block2");
+}
+
+function submitBlock2(){
+  let ok=true;
+  FL_QUESTIONS.forEach(q=>{if(!getChecked(q.id))ok=false;});
+  if(!ok){document.getElementById("err-b2").style.display="block";return;}
+  if(state.b2Timer) clearInterval(state.b2Timer);
+  const correct=[0,1,2,3,4].filter(i=>{const q=FL_QUESTIONS[i];return getChecked(q.id)===q.correct;}).length;
+  const d={};
+  FL_QUESTIONS.forEach(q=>{d[q.id]=getChecked(q.id);});
+  d.fl_score=correct; d.fl_order=state.fl2RandomOrder.join(",");
+  state.answers.block2=d;
+  saveBlock("B2_FinLit",d);
+  goSection("block3");
+}
+
+function submitBlock4(){
+  if(state.condition==="LuckReflect"){
+    const checked=document.querySelectorAll("#ref-goals input:checked");
+    if(checked.length!==2){document.getElementById("err-ref").style.display="block";return;}
+    state.answers.ref_goals=Array.from(checked).map(c=>c.value);
+  }
+  saveBlock("B4_Treatment",{condition:state.condition,conditionNum:state.conditionNum,ref_goals:state.answers.ref_goals||null});
+  goSection("block4r");
+}
+
+function submitRecall(){
+  const items = state.acOrder || [];
+  const d = {};
+  let allAnswered = true;
+  let anyWrong = false;
+
+  // Collect responses
+  items.forEach(it=>{
+    const v = getChecked(it.id);
+    if(!v) allAnswered = false;
+    d[it.id] = v || "";
+    d[it.id + "_correct"] = (v === it.correct);
+    if(v && v !== it.correct) anyWrong = true;
+  });
+
+  if(!allAnswered){
+    document.getElementById("err-recall").style.display = "block";
+    return;
+  }
+  document.getElementById("err-recall").style.display = "none";
+
+  // First submit with any wrong answer → reveal the correct answers, let them
+  // read the feedback, then allow them to continue on the next click.
+  if(anyWrong && !state.acRevealed){
+    state.acRevealed = true;
+
+    items.forEach(it=>{
+      const v  = getChecked(it.id);
+      const fb = document.getElementById("fb_" + it.id);
+      if(!fb) return;
+
+      if(v === it.correct){
+        fb.innerHTML = `<div style="background:#eaf3de;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:9px 14px;font-size:13px;color:var(--dark)">
+          <strong>Correct.</strong></div>`;
+      } else {
+        const correctLabel = (it.opts.find(o=>o[0]===it.correct)||["",it.correct])[1];
+        fb.innerHTML = `<div class="warn-box" style="font-size:13px;margin:0">
+          <strong>Not quite.</strong> The correct answer is: <strong>${correctLabel}</strong></div>`;
+      }
+      fb.style.display = "block";
+    });
+
+    // Lock the inputs so the revealed answers can't be edited
+    items.forEach(it=>{
+      document.querySelectorAll(`input[name="${it.id}"]`).forEach(el=>{ el.disabled = true; });
+    });
+
+    const rp = document.getElementById("recall-reprompt");
+    if(rp){
+      rp.innerHTML = `<div class="info-box" style="margin:0">Please review the answers above, then click Continue.</div>`;
+      rp.style.display = "block";
+    }
+
+    const btn = document.querySelector('[onclick="submitRecall()"]');
+    if(btn) btn.textContent = "Continue →";
+
+    window.scrollTo({top:0, behavior:"smooth"});
+    return;
+  }
+
+  d.reprompted = !!state.acRevealed;
+  d.ac_order   = items.map(it=>it.id).join(",");   // randomised presentation order
+  saveBlock("B4_AttentionCheck", d);
+  goSection("prelottery");
+}
+
+
+// ── PRE-LOTTERY TRANSITION PAGE ───────────────────────────────────────────
+function renderPreLottery(){
+  progress(48);
+  return `<div class="card">
+    <p style="font-size:14.5px;line-height:1.8;padding:10px 0">Before the investment task, you will complete two short decision-making exercises. Your choices may affect your final earnings. Instructions for each exercise will be provided immediately before it begins.</p>
+    ${navRow("goSection('lottery_a')","Next →")}
+  </div>`;
+}
+
+function submitHL(){
+  const vals=[];
+  for(let i=0;i<10;i++){const v=getChecked(`hl_${i}`);if(!v){document.getElementById("err-hl").style.display="block";return;}vals.push(v);}
+  document.getElementById("err-hl").style.display="none";
+  const sw=vals.findIndex((v,i)=>v==="B"&&(i===0||vals[i-1]==="A"))+1||10;
+  const hlRow=(state.hlPayRow||Math.floor(Math.random()*10)+1)-1;
+  const hlProb=(hlRow+1)/10;
+  const hlHigh=Math.random()<hlProb;
+  const hlChoice=vals[hlRow];
+  const hlPayout=hlChoice==="A"?(hlHigh?200:160):(hlHigh?350:10);
+  state.hlResult={row:hlRow+1,choice:hlChoice,high:hlHigh,payout:hlPayout};
+  const d={hl_responses:vals.join(","),hl_switch:sw,hl_pay_row:hlRow+1,hl_choice:hlChoice,hl_high:hlHigh,hl_payout:hlPayout};
+  state.answers.hl=d;
+  saveBlock("B5_HoltLaury",d);
+  // If HL was Lottery A (HL_first), go to Lottery B next; otherwise both done, go to pre-investment
+  if(state.lotteryOrder==="HL_first") goSection("lottery_b");
+  else goSection("preInvestment");
+}
+
+function submitLA(){
+  const vals=[];
+  for(let i=0;i<6;i++){const v=getChecked(`la_${i}`);if(!v){document.getElementById("err-la").style.display="block";return;}vals.push(v);}
+  document.getElementById("err-la").style.display="none";
+  const sw=vals.findIndex(v=>v==="reject")+1||7;
+  const laRow=(state.laPayRow||Math.floor(Math.random()*6)+1)-1;
+  const laChoice=vals[laRow];
+  const losses=[60,90,120,150,175,200];
+  let laPayout=0;
+  let laHeads=false;
+  if(laChoice==="accept"){laHeads=Math.random()<0.5;laPayout=laHeads?200:-losses[laRow];}
+  state.laResult={row:laRow+1,choice:laChoice,heads:laHeads,payout:laPayout};
+  const d={la_responses:vals.join(","),la_switch:sw,la_pay_row:laRow+1,la_choice:laChoice,la_payout:laPayout};
+  state.answers.la=d;
+  saveBlock("B5b_LossAversion",d);
+  // If LA was Lottery A, go to Lottery B next; otherwise both done, go to pre-investment
+  if(state.lotteryOrder==="LA_first") goSection("lottery_b");
+  else goSection("preInvestment");
+}
+
+function submitRound(num,next){
+  const keys=["cash","L","M","H","V"];
+  const alloc={};
+  let total=0;
+  keys.forEach(k=>{const el=document.getElementById(`R${num}_${k}`);const v=parseFloat(el?.value)||0;alloc[k]=v;total+=v;});
+  if(total!==ENDOWMENT){document.getElementById(`err-round${num}`).style.display="block";return;}
+  document.getElementById(`err-round${num}`).style.display="none";
+  state.allocs[`R${num}`]=alloc;
+  const hiRisk=((alloc.H||0)+(alloc.V||0))/ENDOWMENT;
+  saveBlock(`B_Round${num}`,{...alloc,hi_risk_share:hiRisk.toFixed(4),cash_share:((alloc.cash||0)/ENDOWMENT).toFixed(4)});
+  goSection(next);
+}
+
+function submitSelfAssess(){
+  const v=getChecked("self_attr");
+  if(!v){document.getElementById("err-self").style.display="block";return;}
+  state.answers.self_attr=v;
+  saveBlock("B_SelfAssess",{self_attr:v});
+  goSection("block9");
+}
+
+function submitBlock9(){
+  const v=getChecked("belief_yn");
+  if(!v){document.getElementById("err-b9").style.display="block";return;}
+  state.answers.belief_yn=v;
+  saveBlock("B9_Belief",{belief_yn:v});
+  goSection("block9b");
+}
+
+function submitBlock9b(){
+  const v=getChecked("rank_belief");
+  if(!v){document.getElementById("err-b9b").style.display="block";return;}
+  state.answers.rank_belief=v;
+  saveBlock("B9b_RankBelief",{rank_belief:v});
+  goSection("screenA");
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ATTACH HANDLERS (timers, live alloc totals)
+// ═══════════════════════════════════════════════════════════════════════════
+function attachHandlers(sec){
+  if(sec==="block2"){
+    let secs=180;
+    const bar=document.getElementById("timer-bar");
+    const lbl=document.getElementById("timer-label");
+    state.b2Timer=setInterval(()=>{
+      secs--;
+      const pct=Math.max(0,secs/180*100);
+      if(bar) bar.style.width=pct+"%";
+      if(bar) bar.style.background=secs<30?"var(--red)":secs<60?"var(--amber)":"var(--green)";
+      const m=Math.floor(secs/60),s=secs%60;
+      if(lbl) lbl.textContent=`Time remaining: ${m}:${s.toString().padStart(2,"0")}`;
+      if(secs<=0){clearInterval(state.b2Timer);submitBlock2();}
+    },1000);
+  }
+  if(["block6","block7","block8"].includes(sec)){
+    const rMap={block6:"R1",block7:"R2",block8:"R3"};
+    const round=rMap[sec];
+    document.querySelectorAll(`input[id^="${round}_"]`).forEach(el=>el.addEventListener("input",()=>updateAllocTotal(round)));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PAYMENT ROUND REVEAL
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════════════
+document.getElementById("app").innerHTML=renderCover();
+</script>
+</body>
+</html>
