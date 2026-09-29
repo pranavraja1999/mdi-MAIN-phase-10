@@ -405,6 +405,7 @@ function goSection(sec){
     block9b:renderBlock9b,
     screenA:renderScreenA,
     screenB:renderScreenB,
+    screenTktIntro:renderScreenTktIntro,
     screenC:renderScreenC,
     screenD:renderScreenD,
     block11:renderBlock11,
@@ -637,10 +638,10 @@ function renderCover(){
   return `<div class="cover">
     <div class="cover-logo">Management Development Institute Gurgaon</div>
     <h1 class="cover-title">Investment Decision Study</h1>
-    <p class="cover-sub">A research study on financial decision-making. Your participation is voluntary and fully confidential. Average earnings: ₹600 - ₹700 (min ₹100, max ₹1,100).</p>
+    <p class="cover-sub">A research study on financial decision-making. Your participation is voluntary and fully confidential. Average earnings: ₹600 - ₹700 (min ₹100, max ₹1,500).</p>
     <div class="cover-meta">
       <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">~15 minutes</div></div>
-      <div class="meta-item"><div class="meta-label">Earnings</div><div class="meta-value">Min ₹100 · Avg ₹600 - ₹700 · Max ₹1,100</div></div>
+      <div class="meta-item"><div class="meta-label">Earnings</div><div class="meta-value">Min ₹100 · Avg ₹600 - ₹700 · Max ₹1,500</div></div>
       <div class="meta-item"><div class="meta-label">Researchers</div><div class="meta-value">Dr. Puneet Arora &amp; Dr. Divya Agarwal</div></div>
     </div>
     <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:18px 20px;max-width:380px;width:100%;margin-bottom:22px;text-align:left">
@@ -675,7 +676,7 @@ function renderParticipantInfo(){
       • Complete a short background questionnaire about general preferences and decision styles.<br>
       • Participate in a computerized simulated investment task involving allocation of a virtual endowment across different options.<br>
       • Answer brief follow-up questions about your experience and decision processes.<br><br>
-      This study will take approximately 20 minutes and will include approximately 400–500 participants.
+      This study will take approximately 15 minutes and will include approximately 700–800 participants.
     </div>
     <div class="sec-label">What are the risks/discomfort involved in this study?</div>
     <div class="info-box">The study involves minimal risks. No physical, medical, legal, or financial risks are expected in this study. To eliminate any discomfort, tasks are brief and structured with clear instructions. Participants are informed and allowed to withdraw at any time without penalty.</div>
@@ -929,18 +930,12 @@ function renderBlock3(){
 // ── BLOCK 3b: Comprehension questions ───────────────────────────────────────
 function renderBlock3b(){
   progress(33);
-  const assetRows=makeAssetTable();
   return `<div class="card">
     <div class="card-header"><span class="block-badge">Block 3 — Step 2 of 2</span><h2 class="card-title">Understanding Questions</h2></div>
     <div class="info-box">
-      The asset menu is shown below for reference. Please answer the questions that follow — you have <strong>two attempts</strong> to answer at least one correctly.<br>
+      Please answer the questions that follow — you have <strong>two attempts</strong> to answer at least one correctly.<br>
       If you are unable to do so, the survey will end and you will receive only the ₹100 participation fee.
     </div>
-    <div class="sec-label">Asset Menu (for reference)</div>
-    <table class="inst-table">
-      <thead><tr><th>Asset</th><th>Description</th><th>Expected Return</th><th>Risk Range</th><th>Return Range</th><th>Amount to Allocate (EU)</th></tr></thead>
-      <tbody>${assetRows}</tbody>
-    </table>
     <div style="margin-top:20px">
       <div class="warn-box" id="comp-banner">Attempt 1 of 2 — answer at least one correctly to proceed.</div>
       <div id="comp-q-wrap"></div>
@@ -1498,6 +1493,9 @@ function renderScreenA(){
   progress(89);
   return `<div class="card">
     <div class="card-header"><span class="block-badge">Belief A</span><h2 class="card-title">Your Investment Outlook</h2></div>
+    <div class="info-box" style="margin-bottom:16px;font-size:13px">
+      <strong>Bonus of ₹30 for this answer.</strong> The bonus is determined by a rule that rewards accurate answers: the closer your answer is to what actually happens in the selected round, the higher your chance of earning the bonus. You maximise your chance of earning the bonus by reporting your honest best estimate.
+    </div>
     <div class="q-block">
       <div class="q-label" style="margin-bottom:16px">One of the three investment rounds will be selected at random for payment. On a scale from 0 to 100, what is the chance that the value of your investment in the selected round will be at least <strong>56,000 EU</strong>?</div>
       <div style="margin:20px 0 8px;display:flex;justify-content:space-between;font-size:12px;color:var(--slate)">
@@ -1516,9 +1514,6 @@ function renderScreenA(){
         </div>
       </div>
       <div id="slider_a_val" style="text-align:center;margin-top:14px;font-size:28px;font-weight:700;font-family:var(--font-h);color:var(--navy);min-height:40px"></div>
-    </div>
-    <div class="info-box" style="margin-top:8px;font-size:13px">
-      <strong>Bonus of ₹30 for this answer.</strong> The bonus is determined by a rule that rewards accurate answers: the closer your answer is to what actually happens in the selected round, the higher your chance of earning the bonus. You maximise your chance of earning the bonus by reporting your honest best estimate.
     </div>
     <div id="err-sa" class="error-box">Please move the slider to record your answer.</div>
     <div style="margin-top:24px;padding-top:16px;border-top:1.5px solid var(--light);display:flex;justify-content:flex-end">
@@ -1559,6 +1554,9 @@ function renderScreenB(){
   progress(91);
   return `<div class="card">
     <div class="card-header"><span class="block-badge">Belief B</span><h2 class="card-title">Your Investment Outlook</h2></div>
+    <div class="info-box" style="margin-bottom:16px;font-size:13px">
+      <strong>Bonus of ₹20 for this answer.</strong> As before, the closer your answer is to what actually happens in the selected round, the higher your chance of earning the bonus. You maximise your chance of earning the bonus by reporting your honest best estimate.
+    </div>
     <div class="q-block">
       <div class="q-label" style="margin-bottom:16px">On a scale from 0 to 100, what is the chance that the value of your investment in the selected round will be <strong>less than 40,000 EU</strong>, that is, that you will lose part of your endowment?</div>
       <div style="margin:20px 0 8px;display:flex;justify-content:space-between;font-size:12px;color:var(--slate)">
@@ -1577,9 +1575,6 @@ function renderScreenB(){
         </div>
       </div>
       <div id="slider_b_val" style="text-align:center;margin-top:14px;font-size:28px;font-weight:700;font-family:var(--font-h);color:var(--navy);min-height:40px"></div>
-    </div>
-    <div class="info-box" style="margin-top:8px;font-size:13px">
-      <strong>Bonus of ₹20 for this answer.</strong> As before, the closer your answer is to what actually happens in the selected round, the higher your chance of earning the bonus. You maximise your chance of earning the bonus by reporting your honest best estimate.
     </div>
     <div id="err-sb" class="error-box">Please move the slider to record your answer.</div>
     <div style="margin-top:24px;padding-top:16px;border-top:1.5px solid var(--light);display:flex;justify-content:flex-end">
@@ -1610,7 +1605,26 @@ function submitScreenB(){
   }
   document.getElementById("err-sb").style.display="none";
   saveBlock("B9_ScreenB",{chance_down:state.chanceDown});
-  goSection("screenC");
+  goSection("screenTktIntro");
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN C — Ticket A choice list (pays if investment ≥ 56,000 EU)
+// ═══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN TKT INTRO — Information page before Ticket A and Ticket B
+// ═══════════════════════════════════════════════════════════════════════════
+function renderScreenTktIntro(){
+  progress(92);
+  return `<div class="card">
+    <div class="card-header"><span class="block-badge">Ticket Tasks</span><h2 class="card-title">Before You Begin — Ticket Tasks</h2></div>
+    <div class="info-box" style="font-size:14px;line-height:1.8">
+      <strong>₹80 has been added to your earnings.</strong> On the next two screens, you will see two tickets, <strong>Ticket A</strong> and <strong>Ticket B</strong>. For each ticket, you will choose whether you would buy it at each of several prices.<br><br>
+      At the end of the study, the computer will select one of the two tickets at random, and then one price for that ticket at random. <strong>Only that choice will count.</strong> If you chose Buy at that price, the price is paid from these ₹80 and you receive the ticket's payout. If you chose Do not buy, the full ₹80 stays in your earnings. Your other earnings are not affected by this part.<br><br>
+      Because only one choice will count, <strong>you can treat every choice as if it were the one that counts.</strong>
+    </div>
+    ${navRow("goSection('screenC')","Continue to Ticket A →")}
+  </div>`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1647,8 +1661,6 @@ function tktRows(tktKey){
 function tktChange(tktKey, price, choice){
   if(!state[tktKey]) state[tktKey]={};
   state[tktKey][price]=choice;
-  // Propagate: if Buy at price → set all lower prices to Buy
-  //            if Do not buy at price → set all higher prices to Do not buy
   TKT_PRICES.forEach(p=>{
     const buyEl  = document.getElementById(`${tktKey}_${p}_buy`);
     const nobuyEl= document.getElementById(`${tktKey}_${p}_nobuy`);
@@ -1670,29 +1682,28 @@ function tktChange(tktKey, price, choice){
   });
 }
 
-const TKT_FOOTER=`<div class="info-box" style="margin-top:14px;font-size:13px">
-  <em>Either this list or the other ticket list (on the next page) will be selected at random, and then one price in that list will be selected at random. If you chose Buy at the selected price, that price is paid from these ₹80 and you receive the ticket's payout. If you chose Do not buy, the full ₹80 stays in your earnings.</em>
+const TKT_REMEMBER=`<div class="warn-box" style="margin-top:14px;font-size:13px">
+  <strong>Remember:</strong> one ticket and one price will be selected at random, and only that choice will count.
 </div>`;
 
 function renderScreenC(){
   progress(93);
   return `<div class="card">
-    <div class="card-header"><span class="block-badge">Ticket A</span><h2 class="card-title">Ticket Choice — Screen C</h2></div>
-    <div class="warn-box" style="margin-bottom:14px">
-      <strong>₹80 has been added to your earnings for this part.</strong> You may use some of it to buy a ticket in the next two screens. Any part of these ₹80 that you do not use stays in your earnings. Your other earnings are not affected by this part.
-    </div>
+    <div class="card-header"><span class="block-badge">Ticket A</span><h2 class="card-title">Ticket A</h2></div>
     <div class="q-label" style="margin-bottom:10px">
       <strong>Ticket A</strong> pays ₹100 if the value of your investment in the selected round is at least <strong>56,000 EU</strong>, and nothing otherwise. For each price below, choose whether you would buy Ticket A at that price.
     </div>
+    <div class="info-box" style="margin-bottom:14px;font-size:13px">
+      <strong>Example:</strong> Suppose you choose Buy at ₹5 and ₹10, and Do not buy at the higher prices. If the price drawn is ₹10, you pay ₹10 from the ₹80. You end this part with ₹170 (80 − 10 + 100) if your investment in the selected round reaches 56,000 EU, or ₹70 if it does not. If the price drawn is ₹40, you do not buy and keep ₹80.
+    </div>
     ${renderTicketTable("tktA", tktRows("tktA"))}
-    ${TKT_FOOTER}
+    ${TKT_REMEMBER}
     <div id="err-sc" class="error-box">Please make a choice for every row.</div>
     ${navRow("submitScreenC()")}
   </div>`;
 }
 
 function submitScreenC(){
-  // Validate all 6 rows answered
   for(const price of TKT_PRICES){
     if(!getChecked(`tktA_${price}`)){
       document.getElementById("err-sc").style.display="block"; return;
@@ -1712,12 +1723,15 @@ function submitScreenC(){
 function renderScreenD(){
   progress(95);
   return `<div class="card">
-    <div class="card-header"><span class="block-badge">Ticket B</span><h2 class="card-title">Ticket Choice — Screen D</h2></div>
+    <div class="card-header"><span class="block-badge">Ticket B</span><h2 class="card-title">Ticket B</h2></div>
     <div class="q-label" style="margin-bottom:10px">
       <strong>Ticket B</strong> pays ₹100 with a <strong>10% chance</strong> and nothing otherwise. Whether it pays is decided by the computer at random, independently of your investment. For each price below, choose whether you would buy Ticket B at that price.
     </div>
+    <div class="info-box" style="margin-bottom:14px;font-size:13px">
+      <strong>Example:</strong> Suppose you choose Buy at ₹5, ₹10 and ₹20, and Do not buy at the higher prices. If the price drawn is ₹20, you pay ₹20 from the ₹80, and the computer then decides whether the ticket pays (a 10% chance). You end this part with ₹160 (80 − 20 + 100) if it pays, or ₹60 if it does not. If the price drawn is ₹60, you do not buy and keep ₹80.
+    </div>
     ${renderTicketTable("tktB", tktRows("tktB"))}
-    ${TKT_FOOTER}
+    ${TKT_REMEMBER}
     <div id="err-sd" class="error-box">Please make a choice for every row.</div>
     ${navRow("submitScreenD()")}
   </div>`;
