@@ -945,9 +945,6 @@ function renderBlock3b(){
         <button class="btn btn-primary" id="comp-btn" onclick="submitComp()">Check Answer →</button>
       </div>
     </div>
-    <div id="block3-nav" style="display:none;margin-top:16px">
-      ${navRow("afterComp()","Continue to Study →")}
-    </div>
   </div>`;
 }
 
@@ -995,8 +992,6 @@ function submitComp(){
     expl.style.display="block";
     const btn=document.getElementById("comp-btn");
     btn.textContent="Proceed →";btn.onclick=afterComp;
-    const nav=document.getElementById("block3-nav");
-    if(nav) nav.style.display="block";
   } else {
     const expl=document.getElementById("comp-expl");
     expl.textContent="Not quite. "+cq.expl;
@@ -1071,7 +1066,7 @@ function renderBlock4(){
       <div class="sec-label">Before you invest — your goals</div>
       <div class="q-label">Select the <strong>two</strong> investment goals that align most closely with your objectives.</div>
       <div id="ref-goals" class="options" style="margin-top:8px">
-        ${["Achieving long-term financial security and retirement readiness","Saving for a major life goal (education, home, family)","Preserving capital and avoiding losses","Generating steady, predictable returns","Maximising growth even if it means accepting volatility"].map((g,i)=>`<label class="opt" onclick="toggleGoal(${i},this)"><input type="checkbox" id="ref_${i}" value="${i}"><span>${g}</span></label>`).join("")}
+        ${["Achieving long-term financial security and retirement readiness","Saving for a major life goal (education, home, family)","Preserving capital and avoiding losses","Generating steady, predictable returns","Maximising growth even if it means accepting volatility"].map((g,i)=>`<label class="opt" for="ref_${i}" style="cursor:pointer"><input type="checkbox" id="ref_${i}" value="${i}" onchange="toggleGoal(${i},this.closest('.opt'))"><span>${g}</span></label>`).join("")}
       </div>
       <div class="q-note">Select exactly 2.</div>
       <div id="err-ref" class="error-box">Please select exactly 2 goals.</div>
